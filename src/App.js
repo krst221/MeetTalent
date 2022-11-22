@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import AppleLogin from 'react-apple-login';
 import { gapi } from 'gapi-script';
 import './App.css';
 
@@ -8,6 +9,7 @@ function App() {
   const [ profile, setProfile ] = useState([]);
   const clientId = '862987207402-6cpa0kbkkglpu55tgfkfn5b1lahvhb2q.apps.googleusercontent.com';
   const [fbUser, setFbUser] = useState();
+
 
   const responseFacebook = (response) => {
     setFbUser(response);
@@ -37,6 +39,13 @@ function App() {
 
   return (
     <div>
+     <AppleLogin  
+      clientId={"apple-sign-in-auth"} 
+      redirectURI={"http://localhost:3000/"}   
+      responseType={"code"} 
+      responseMode={"query"}  
+      usePopup={false} 
+      />
       {fbUser ?
         <div><h2>{fbUser.name}</h2><h3>{fbUser.email}</h3></div>
        :

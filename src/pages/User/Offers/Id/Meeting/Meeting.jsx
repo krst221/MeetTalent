@@ -1,4 +1,5 @@
 import React from 'react'
+import './Meeting.scss'
 
 const Meeting = () => {
   return (

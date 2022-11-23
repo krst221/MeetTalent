@@ -27,10 +27,13 @@ import Id from './pages/User/Offers/Id/Id';
 import Candidate from './pages/User/Offers/Id/Candidate/Candidate';
 import Hackathon from './pages/User/Offers/Id/Hackathon/Hackathon';
 import Meeting from './pages/User/Offers/Id/Meeting/Meeting';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 
 function App() {
   return (
+    <Provider store={store}>
     <Router> 
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>  
@@ -62,6 +65,7 @@ function App() {
         <Route path="/user/offers/:id/meeting" element={<Meeting></Meeting>}></Route>       
       </Routes>
     </Router>
+    </Provider>
       
   );
 }

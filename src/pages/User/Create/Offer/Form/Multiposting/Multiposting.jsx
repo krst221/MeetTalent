@@ -1,4 +1,5 @@
 import React from 'react'
+import './Multiposting.scss'
 
 const Multiposting = () => {
   return (

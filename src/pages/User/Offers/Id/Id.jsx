@@ -1,4 +1,5 @@
 import React from 'react'
+import './Id.scss'
 
 const Id = () => {
   return (

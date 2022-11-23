@@ -1,4 +1,5 @@
 import React from 'react'
+import './Evaluation.scss'
 
 const Evaluation = () => {
   return (

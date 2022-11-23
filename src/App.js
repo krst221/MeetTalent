@@ -31,7 +31,6 @@ import Meeting from './pages/User/Offers/Id/Meeting/Meeting';
 
 function App() {
   return (
-    
     <Router> 
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>  
@@ -60,7 +59,7 @@ function App() {
         <Route path="/user/offers/:id" element={<Id></Id>}></Route>
         <Route path="/user/offers/:id/candidate" element={<Candidate></Candidate>}></Route>
         <Route path="/user/offers/:id/hackathon" element={<Hackathon></Hackathon>}></Route>
-        <Route path="/user/offers/:id/meeting" element={<Meeting></Meeting>}></Route>
+        <Route path="/user/offers/:id/meeting" element={<Meeting></Meeting>}></Route>       
       </Routes>
     </Router>
       

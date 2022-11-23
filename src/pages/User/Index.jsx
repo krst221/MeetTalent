@@ -1,9 +1,12 @@
 import React from 'react'
+import Logo from '../../components/Logo/Logo'
 import './Index.scss'
 
 const Index = () => {
   return (
-    <div>Index</div>
+    <div>
+      <Logo></Logo>
+    </div>
   )
 }
 

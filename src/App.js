@@ -62,7 +62,6 @@ function App() {
         <Route path="/user/offers/:id/meeting" element={<Meeting></Meeting>}></Route>       
       </Routes>
     </Router>
-      
   );
 }
 

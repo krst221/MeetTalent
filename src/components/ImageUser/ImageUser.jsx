@@ -1,9 +1,9 @@
 import React from 'react'
 import './ImageUser.scss'
 
-const ImageUser = () => {
+const ImageUser = ({src}) => {
   return (
-    <div>ImageUser</div>
+    <img className='b-imguser' src={src} alt='' />
   )
 }
 

@@ -15,6 +15,9 @@ export const VERIFY_MAIL_ERROR = "VERIFY_MAIL_ERROR";
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 export const CHANGE_PASSWORD_OK = "CHANGE_PASSWORD_OK";
 export const CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD_ERROR";
+export const MODIFY_USER_VALUE = "MODIFY_USER_VALUE";
+export const MODIFY_USER_VALUE_OK = "MODIFY_USER_VALUE_OK";
+export const MODIFY_USER_VALUE_ERROR = "MODIFY_USER_VALUE_ERROR";
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "LOGIN_USER"})
@@ -40,6 +43,16 @@ export const registerUser = (formdata, navigate) => async(dispatch) => {
     }
 }
 
+export const modifyUserValue = (formData) => async(dispatch) => {
+    dispatch({type: "MODIFY_USER_VALUE"})
+    try {    
+        const result = await API.put("user/editValue", formData);
+        localStorage.setItem('user', JSON.stringify(result.data));
+        dispatch({type: "MODIFY_USER_VALUE_OK"})
+    } catch (error) {  
+        dispatch({type: "MODIFY_USER_VALUE_ERROR"})
+    }
+}
 
 export const registerCompany = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_COMPANY"})

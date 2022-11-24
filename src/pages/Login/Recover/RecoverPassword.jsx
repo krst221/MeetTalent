@@ -28,7 +28,7 @@ export const RecoverPassword = () => {
       <>
       <form onSubmit={(handleSubmit(cambiaPassword))}>
         <label>Nueva contraseña</label>
-        <input type="password" placeholder='Nueva contraseña' {...register("password", {
+        <input className='b-login-input' type="password" placeholder='Nueva contraseña' {...register("password", {
           required : "La contraseña no puede ser vacía",
           pattern : 
           {
@@ -43,7 +43,7 @@ export const RecoverPassword = () => {
         </>}
         </div>
         <label>Confirmar</label>
-        <input type="password" placeholder='Confirmar contraseña' {...register("password2", {
+        <input type="password" className='b-login-input' placeholder='Confirmar contraseña' {...register("password2", {
           validate: value => value === getValues('password') || 'Las contraseñas deben coincidir.',
           pattern : 
           {

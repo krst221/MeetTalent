@@ -3,7 +3,9 @@ import './Logo.scss'
 
 const Logo = () => {
   return (
-    <div>Logo</div>
+    <div className='b-logo'>
+      <img src="../assets/logo1.png" alt="Logotipo MeetTalent"></img>
+    </div>
   )
 }
 

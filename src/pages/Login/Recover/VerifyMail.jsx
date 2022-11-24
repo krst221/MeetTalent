@@ -6,6 +6,7 @@ import Button from '../../../components/Button/Button'
 import Loading from '../../../components/Loading/Loading'
 import Logo from '../../../components/Logo/Logo'
 import { verifyMail } from '../../../redux/auth/auth.actions'
+import "./Verify.scss"
 
 export const VerifyMail= () => {
   const {register, handleSubmit, formState : {errors}, getValues} = useForm()
@@ -19,7 +20,7 @@ export const VerifyMail= () => {
   }
 
   return (
-    <div className='b-login-container'>
+    <div className='b-verify-container'>
       <div className='b-login-logo'>
         <Logo></Logo>
       </div>
@@ -27,7 +28,7 @@ export const VerifyMail= () => {
       <>
       <form onSubmit={(handleSubmit(verificaMail))}>
         <label>Email ID</label>
-        <input type="text" placeholder='Email ID' {...register("email", {
+        <input className='b-login-input' type="text" placeholder='Email ID' {...register("email", {
           required : "El email no puede ser vacío",
           pattern : 
           {
@@ -42,7 +43,7 @@ export const VerifyMail= () => {
         </>}
         </div>
         <label>Confirmar</label>
-        <input type="text" placeholder='Confirmar email' {...register("email2", {
+        <input className='b-login-input' type="text" placeholder='Confirmar email' {...register("email2", {
           validate: value => value === getValues('email') || 'Los email deben coincidir.',
           required : "El email no puede ser vacío",
           pattern : 

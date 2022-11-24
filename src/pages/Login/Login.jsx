@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../../redux/auth/auth.actions'
+
 import './Login.scss'
 
 const Login = () => {

@@ -24,7 +24,7 @@ label {
     margin-bottom: 16px;
 }
 
-input {
+.b-login-input {
     background-color: rgb(216, 238, 248);
     color: rgb(43, 129, 168);
     width: 100%;
@@ -32,12 +32,14 @@ input {
     border-radius: 8px;
     border: none;
     cursor: pointer;
+
+    &::placeholder {
+        color: rgb(43, 129, 168);
+        padding-left: 21px;
+    }
 }
 
-input::placeholder {
-    color: rgb(43, 129, 168);
-    padding-left: 21px;
-}
+
 
 .b-form-button {
     margin-top: 16px;

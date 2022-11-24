@@ -6,6 +6,9 @@ export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
 export const REGISTER_USER = "REGISTER_USER";
 export const REGISTER_USER_OK = "REGISTER_USER_OK";
 export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
+export const REGISTER_COMPANY = "REGISTER_COMPANY";
+export const REGISTER_COMPANY_OK = "REGISTER_COMPANY_OK";
+export const REGISTER_COMPANY_ERROR = "REGISTER_COMPANY_ERROR";
 
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
@@ -35,5 +38,19 @@ export const registerUser = (formdata, navigate) => async(dispatch) => {
     } catch (error) {
         
         dispatch({type: "REGISTER_USER_ERROR"})
+    }
+}
+
+export const registerCompany = (formdata, navigate) => async(dispatch) => {
+    dispatch({type: "REGISTER_COMPANY"})
+    try {
+        
+        const result = await API.post("company/register", formdata)
+        dispatch({type: "REGISTER_COMPANY_OK"})
+        navigate('/login')
+
+    } catch (error) {
+        
+        dispatch({type: "REGISTER_COMPANY_ERROR"})
     }
 }

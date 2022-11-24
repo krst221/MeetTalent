@@ -27,7 +27,7 @@ export const VerifyMail= () => {
       <>
       <form onSubmit={(handleSubmit(verificaMail))}>
         <label>Email ID</label>
-        <input type="text" placeholder='Email ID' {...register("email", {
+        <input type="text" className='b-login-input' placeholder='Email ID' {...register("email", {
           required : "El email no puede ser vacío",
           pattern : 
           {
@@ -42,7 +42,7 @@ export const VerifyMail= () => {
         </>}
         </div>
         <label>Confirmar</label>
-        <input type="text" placeholder='Confirmar email' {...register("email2", {
+        <input type="text" className='b-login-input' placeholder='Confirmar email' {...register("email2", {
           validate: value => value === getValues('email') || 'Los email deben coincidir.',
           required : "El email no puede ser vacío",
           pattern : 

@@ -43,6 +43,7 @@ export const VerifyMail= () => {
         </>}
         </div>
         <label>Confirmar</label>
+
         <input className='b-login-input' type="text" placeholder='Confirmar email' {...register("email2", {
           validate: value => value === getValues('email') || 'Los email deben coincidir.',
           required : "El email no puede ser vacío",

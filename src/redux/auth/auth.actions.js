@@ -18,8 +18,15 @@ export const VERIFY_MAIL_ERROR = "VERIFY_MAIL_ERROR";
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 export const CHANGE_PASSWORD_OK = "CHANGE_PASSWORD_OK";
 export const CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD_ERROR";
+export const MODIFY_USER_VALUE = "MODIFY_USER_VALUE";
+export const MODIFY_USER_VALUE_OK = "MODIFY_USER_VALUE_OK";
+export const MODIFY_USER_VALUE_ERROR = "MODIFY_USER_VALUE_ERROR";
+export const MODIFY_ARRAY_VALUE = "MODIFY_ARRAY_VALUE";
+export const MODIFY_ARRAY_VALUE_OK = "MODIFY_ARRAY_VALUE_OK";
+export const MODIFY_ARRAY_VALUE_ERROR = "MODIFY_ARRAY_VALUE_ERROR";
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
+
     dispatch({type: "LOGIN_USER"})
     try {
         const result = await API.post("user/login", formdata)
@@ -43,6 +50,25 @@ export const registerUser = (formdata, navigate) => async(dispatch) => {
     }
 }
 
+export const modifyUserValue = (formData) => async(dispatch) => {
+    dispatch({type: "MODIFY_USER_VALUE"})
+    try {    
+        await API.put("user/editValue", formData);
+        dispatch({type: "MODIFY_USER_VALUE_OK"})
+    } catch (error) {  
+        dispatch({type: "MODIFY_USER_VALUE_ERROR"})
+    }
+}
+
+export const modifyUserArray = (formData) => async(dispatch) => {
+    dispatch({type: "MODIFY_USER_ARRAY"})
+    try {    
+        await API.put("user/editArray", formData);
+        dispatch({type: "MODIFY_USER_ARRAY_OK"})
+    } catch (error) {  
+        dispatch({type: "MODIFY_USER_ARRAY_ERROR"})
+    }
+}
 
 export const registerCompany = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_COMPANY"})
@@ -64,9 +90,7 @@ export const verifyMail = (formdata, navigate) => async(dispatch) => {
         dispatch({type: "VERIFY_MAIL_OK"})
         const verify = localStorage.getItem('verify');
         if(verify === 'true') navigate('/login/recover')
-
     } catch (error) {
-        
         dispatch({type: "VERIFY_MAIL_ERROR"})
     }
 }
@@ -78,11 +102,8 @@ export const changePassword = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('verify', false)
         localStorage.setItem('email', null)
         dispatch({type: "CHANGE_PASSWORD_OK"})
-
         navigate('/login')
-
-    } catch (error) {
-        
+    } catch (error) {  
         dispatch({type: "CHANGE_PASSWORD_ERROR"})
 
     }

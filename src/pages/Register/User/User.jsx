@@ -2,13 +2,10 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
 import Button from '../../../components/Button/Button'
-
 import Loading from '../../../components/Loading/Loading'
 import { registerUser } from '../../../redux/auth/auth.actions'
 import './User.scss'
-
 const User = () => {
   
 

@@ -44,7 +44,9 @@ export const RecoverPassword = () => {
         </>}
         </div>
         <label>Confirmar</label>
+
         <input className='b-login-input' type="password" placeholder='Confirmar contraseña' {...register("password2", {
+
           validate: value => value === getValues('password') || 'Las contraseñas deben coincidir.',
           pattern : 
           {

@@ -3,7 +3,6 @@ import './App.css';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import { RecoverPassword } from './pages/Login/Recover/RecoverPassword';
-import Register from './pages/Register/Register';
 import Chat from './pages/User/Chat/Chat';
 import Profile from './pages/User/Profile/Index';
 import Index from './pages/User/Index';
@@ -29,6 +28,8 @@ import Hackathon from './pages/User/Offers/Id/Hackathon/Hackathon';
 import Meeting from './pages/User/Offers/Id/Meeting/Meeting';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import User from './pages/Register/User/User';
+import Company from './pages/Register/Company/Company';
 
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
     <Router> 
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>  
-        <Route path="/register" element={<Register></Register>}></Route> 
+        <Route path="/register/user" element={<User></User>}></Route>
+        <Route path="/register/company" element={<Company></Company>}></Route>
         <Route path="/register/sync" element={<Sync></Sync>}></Route> 
         <Route path="/login" element={<Login></Login>}></Route> 
         <Route path="/login/recover" element={<RecoverPassword></RecoverPassword>}></Route>

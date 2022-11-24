@@ -2,11 +2,11 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Loading from '../../components/Loading/Loading'
-import { registerUser } from '../../redux/auth/auth.actions'
-import './Register.scss'
+import Loading from '../../../components/Loading/Loading'
+import { registerUser } from '../../../redux/auth/auth.actions'
+import './Company.scss'
 
-const Register = () => {
+const Company = () => {
   
   const {register, handleSubmit, formState : {errors}} = useForm()
   const {isLoading} = useSelector((state) => state.auth)
@@ -52,4 +52,4 @@ const Register = () => {
   
 }
 
-export default Register
+export default Company

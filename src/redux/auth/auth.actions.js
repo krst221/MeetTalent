@@ -9,35 +9,33 @@ export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
 export const REGISTER_COMPANY = "REGISTER_COMPANY";
 export const REGISTER_COMPANY_OK = "REGISTER_COMPANY_OK";
 export const REGISTER_COMPANY_ERROR = "REGISTER_COMPANY_ERROR";
-
-
+export const VERIFY_MAIL = "VERIFY_MAIL";
+export const VERIFY_MAIL_OK = "VERIFY_MAIL_OK";
+export const VERIFY_MAIL_ERROR = "VERIFY_MAIL_ERROR";
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
+export const CHANGE_PASSWORD_OK = "CHANGE_PASSWORD_OK";
+export const CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD_ERROR";
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "LOGIN_USER"})
     try {
-        
         const result = await API.post("user/login", formdata)
         localStorage.setItem('token', result.data.token)
         localStorage.setItem('user', JSON.stringify(result.data.user))
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
         navigate('/')
-
     } catch (error) {
-        
         dispatch({type: "LOGIN_USER_ERROR",  payload : error.message})
     }
 }
 
 export const registerUser = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_USER"})
-
     try {    
         await API.post("user/register", formdata)
         dispatch({type: "REGISTER_USER_OK"})
         navigate('/login')
-
-    } catch (error) {
-        
+    } catch (error) {  
         dispatch({type: "REGISTER_USER_ERROR"})
     }
 }
@@ -46,9 +44,13 @@ export const registerUser = (formdata, navigate) => async(dispatch) => {
 export const registerCompany = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_COMPANY"})
     try {
-        
-        const result = await API.post("company/register", formdata)
+        await API.post("company/register", formdata)
         dispatch({type: "REGISTER_COMPANY_OK"})
+        navigate('/login')
+    } catch (error) {
+        dispatch({type: "REGISTER_COMPANY_ERROR"})
+    }
+}
 
 export const verifyMail = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "VERIFY_MAIL"})

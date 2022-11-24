@@ -61,9 +61,7 @@ export const verifyMail = (formdata, navigate) => async(dispatch) => {
         dispatch({type: "VERIFY_MAIL_OK"})
         const verify = localStorage.getItem('verify');
         if(verify === 'true') navigate('/login/recover')
-
     } catch (error) {
-        
         dispatch({type: "VERIFY_MAIL_ERROR"})
     }
 }
@@ -75,11 +73,8 @@ export const changePassword = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('verify', false)
         localStorage.setItem('email', null)
         dispatch({type: "CHANGE_PASSWORD_OK"})
-
         navigate('/login')
-
-    } catch (error) {
-        
+    } catch (error) {  
         dispatch({type: "CHANGE_PASSWORD_ERROR"})
 
     }

@@ -6,7 +6,6 @@ import Button from '../../components/Button/Button'
 import Loading from '../../components/Loading/Loading'
 import Logo from '../../components/Logo/Logo'
 import { loginUser } from '../../redux/auth/auth.actions'
-
 import './Login.scss'
 
 const Login = () => {
@@ -29,7 +28,7 @@ const Login = () => {
       <>
       <form onSubmit={(handleSubmit(enviar))}>
         <label>Email ID</label>
-        <input type="text" placeholder='Email ID' {...register("email", {
+        <input className='b-login-input' type="text" placeholder='Email ID' {...register("email", {
           required : "El email no puede ser vacío",
           pattern : 
           {
@@ -44,7 +43,7 @@ const Login = () => {
         </>}
         </div>
         <label>Contraseña</label>
-        <input type="password" placeholder='Contraseña' {...register("password", {
+        <input className='b-login-input' type="password" placeholder='Contraseña' {...register("password", {
           required : "La contraseña no puede ser vacía",
           pattern : 
           {

@@ -7,6 +7,7 @@ const INITAL_STATE = {
     isLoading : false,
     verify: false,
     email: null
+
 }
 
 const authReducer = (state = INITAL_STATE, action) => {

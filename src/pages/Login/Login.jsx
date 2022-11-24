@@ -49,7 +49,7 @@ const Login = () => {
           pattern : 
           {
             message : "La contraseña tiene que tener un formato correcto.",
-            pattern :  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/
+            pattern :  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/
           }
         })}/>
         <div className='b-errors-container'>
@@ -61,7 +61,7 @@ const Login = () => {
         <Button className="b-form-button" text="Comenzar"></Button>
       </form>
       <div className='b-login-recover'>
-        <p>¿No puedes iniciar sesión? <NavLink style={{ textDecoration: 'none' }} to={'/login/recover'}><span className='b-login-span'>Restablecer contraseña</span></NavLink></p>
+        <p>¿No puedes iniciar sesión? <NavLink style={{ textDecoration: 'none' }} to={'/login/verify'}><span className='b-login-span'>Restablecer contraseña</span></NavLink></p>
       </div>
       <p>o</p>
       <div className='b-login-create'>

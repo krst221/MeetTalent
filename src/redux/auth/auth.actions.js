@@ -6,6 +6,12 @@ export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
 export const REGISTER_USER = "REGISTER_USER";
 export const REGISTER_USER_OK = "REGISTER_USER_OK";
 export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
+export const VERIFY_MAIL = "VERIFY_MAIL";
+export const VERIFY_MAIL_OK = "VERIFY_MAIL_OK";
+export const VERIFY_MAIL_ERROR = "VERIFY_MAIL_ERROR";
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
+export const CHANGE_PASSWORD_OK = "CHANGE_PASSWORD_OK";
+export const CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD_ERROR";
 
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
@@ -26,14 +32,44 @@ export const loginUser = (formdata, navigate) => async(dispatch) => {
 
 export const registerUser = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_USER"})
-    try {
-        
-        const result = await API.post("user/register", formdata)
+    try {    
+        await API.post("user/register", formdata)
         dispatch({type: "REGISTER_USER_OK"})
         navigate('/login')
 
     } catch (error) {
         
         dispatch({type: "REGISTER_USER_ERROR"})
+    }
+}
+
+export const verifyMail = (formdata, navigate) => async(dispatch) => {
+    dispatch({type: "VERIFY_MAIL"})
+    try {
+        await API.post("user/mail", formdata)
+        localStorage.setItem('verify', true)
+        localStorage.setItem('email', formdata.email)
+        dispatch({type: "VERIFY_MAIL_OK"})
+        const verify = localStorage.getItem('verify');
+        if(verify === 'true') navigate('/login/recover')
+
+    } catch (error) {
+        
+        dispatch({type: "VERIFY_MAIL_ERROR"})
+    }
+}
+
+export const changePassword = (formdata, navigate) => async(dispatch) => {
+    dispatch({type: "CHANGE_PASSWORD"})
+    try {
+        await API.put("user/change", formdata)
+        localStorage.setItem('verify', false)
+        localStorage.setItem('email', null)
+        dispatch({type: "CHANGE_PASSWORD_OK"})
+        navigate('/login')
+
+    } catch (error) {
+        
+        dispatch({type: "CHANGE_PASSWORD_ERROR"})
     }
 }

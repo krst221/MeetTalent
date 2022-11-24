@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import { RecoverPassword } from './pages/Login/Recover/RecoverPassword';
+import VerifyMail from './pages/Login/Recover/VerifyMail';
+import RecoverPassword from './pages/Login/Recover/RecoverPassword';
 import Chat from './pages/User/Chat/Chat';
 import Profile from './pages/User/Profile/Index';
 import Index from './pages/User/Index';
@@ -33,6 +34,8 @@ import Company from './pages/Register/Company/Company';
 
 
 function App() {
+  const verify = localStorage.getItem('verify') || null;
+  console.log(verify);
   return (
     <Provider store={store}>
     <Router> 
@@ -42,7 +45,8 @@ function App() {
         <Route path="/register/company" element={<Company></Company>}></Route>
         <Route path="/register/sync" element={<Sync></Sync>}></Route> 
         <Route path="/login" element={<Login></Login>}></Route> 
-        <Route path="/login/recover" element={<RecoverPassword></RecoverPassword>}></Route>
+        <Route path="/login/verify" element={<VerifyMail></VerifyMail>}></Route>
+        <Route path="/login/recover" element={verify==='true' ? <RecoverPassword></RecoverPassword> : <VerifyMail/>}></Route>
         <Route path="/user" element={<Index></Index>}></Route>
         <Route path="/user/chat" element={<Chat></Chat>}></Route>
         <Route path="/user/profile" element={<Profile></Profile>}></Route>  

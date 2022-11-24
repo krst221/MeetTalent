@@ -9,6 +9,9 @@ export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
 export const REGISTER_COMPANY = "REGISTER_COMPANY";
 export const REGISTER_COMPANY_OK = "REGISTER_COMPANY_OK";
 export const REGISTER_COMPANY_ERROR = "REGISTER_COMPANY_ERROR";
+export const REGISTER_OFFER = "REGISTER_OFFER";
+export const REGISTER_OFFER_OK = "REGISTER_OFFER_OK";
+export const REGISTER_OFFER_ERROR = "REGISTER_OFFER_ERROR";
 export const VERIFY_MAIL = "VERIFY_MAIL";
 export const VERIFY_MAIL_OK = "VERIFY_MAIL_OK";
 export const VERIFY_MAIL_ERROR = "VERIFY_MAIL_ERROR";
@@ -82,5 +85,16 @@ export const changePassword = (formdata, navigate) => async(dispatch) => {
         
         dispatch({type: "CHANGE_PASSWORD_ERROR"})
 
+    }
+}
+
+export const registerOffer = (formdata, navigate) => async(dispatch) => {
+    dispatch({type: "REGISTER_OFFER"})
+    try {    
+        await API.post("user/register", formdata)
+        dispatch({type: "REGISTER_OFFER_OK"})
+        navigate('/login')
+    } catch (error) {  
+        dispatch({type: "REGISTER_OFFER_ERROR"})
     }
 }

@@ -30,6 +30,12 @@ const authReducer = (state = INITAL_STATE, action) => {
             return {...state, isLoading : false, error : false};
         case actions.REGISTER_COMPANY_ERROR :
             return {...state, isLoading : false, error : action.payload};
+        case actions.REGISTER_OFFER :
+            return {...state, isLoading : true};
+        case actions.REGISTER_OFFER_OK :
+            return {...state, isLoading : false, error : false};
+        case actions.REGISTER_OFFER_ERROR :
+            return {...state, isLoading : false, error : action.payload};
         case actions.VERIFY_MAIL :
             return {...state, isLoading : true};
         case actions.VERIFY_MAIL_OK :

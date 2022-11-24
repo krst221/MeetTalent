@@ -49,6 +49,13 @@ export const registerCompany = (formdata, navigate) => async(dispatch) => {
         
         const result = await API.post("company/register", formdata)
         dispatch({type: "REGISTER_COMPANY_OK"})
+        navigate('/login')
+
+    } catch (error) {
+        
+        dispatch({type: "REGISTER_COMPANY_ERROR"})
+    }
+}
 
 export const verifyMail = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "VERIFY_MAIL"})

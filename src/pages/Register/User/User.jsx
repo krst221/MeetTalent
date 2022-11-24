@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../../../components/Button/Button'
 
 import Loading from '../../../components/Loading/Loading'
-https://github.com/krst221/MeetTalent/pull/13/conflict?name=src%252Fpages%252FLogin%252FLogin.scss&ancestor_oid=e69de29bb2d1d6434b8b29ae775ad8c2e48c5391&base_oid=7d7d70ee55b3a88ef64a120476f0b77f75a4af81&head_oid=de39f0356a051c3b85fdafb35fa5c6ab40afdf88import { registerUser } from '../../../redux/auth/auth.actions'
+import { registerUser } from '../../../redux/auth/auth.actions'
 import './User.scss'
 
 const User = () => {

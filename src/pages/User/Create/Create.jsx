@@ -1,9 +1,30 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import NavBar from '../../../components/NavBar/NavBar'
+import RadiusButton from '../../../components/RadiusButton/RadiusButton'
 import './Create.scss'
 
 const Create = () => {
+
+  const navigate = useNavigate()
+
+  const routeImg = '../../.././assets/document.svg'; 
+  const routeImg2 = '../../.././assets/video.svg'; 
+
   return (
-    <div>Create</div>
+    <div className='b-create-container'>
+      <div className='b-create-offer'>
+          <RadiusButton src={routeImg}></RadiusButton>
+          <button className="b-create-button" text="Crear oferta" onClick={() => navigate("/user/create/offer")}>Crear oferta</button>
+      </div>
+      <div className='b-create-test'>
+          <RadiusButton src={routeImg2}></RadiusButton>
+          <button className="b-create-button" text="Crear prueba" onClick={() => navigate("/user/create/test")}>Crear prueba</button>
+      </div>
+      <div className='b-create-navbar'>
+        <NavBar></NavBar>
+      </div>
+    </div>
   )
 }
 

@@ -6,6 +6,7 @@ import Button from '../../../components/Button/Button'
 import Loading from '../../../components/Loading/Loading'
 import Logo from '../../../components/Logo/Logo'
 import { changePassword } from '../../../redux/auth/auth.actions'
+import "../Login.scss"
 
 export const RecoverPassword = () => {
   const {register, handleSubmit, formState : {errors}, getValues} = useForm()
@@ -43,7 +44,9 @@ export const RecoverPassword = () => {
         </>}
         </div>
         <label>Confirmar</label>
-        <input type="password" className='b-login-input' placeholder='Confirmar contraseña' {...register("password2", {
+
+        <input className='b-login-input' type="password" placeholder='Confirmar contraseña' {...register("password2", {
+
           validate: value => value === getValues('password') || 'Las contraseñas deben coincidir.',
           pattern : 
           {

@@ -1,4 +1,4 @@
-.b-login-container {
+.b-verify-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,6 @@
     background-color: rgb(13, 32, 42);
     color: white;
     flex-direction: column;
-    padding: 5px 0;
 }
 
 .b-login-logo {
@@ -83,4 +82,3 @@ label {
     margin: 20px;
 
 }
-

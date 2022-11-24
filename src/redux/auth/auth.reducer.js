@@ -48,6 +48,12 @@ const authReducer = (state = INITAL_STATE, action) => {
             return {...state, isLoading : false, error : false, user : action.payload};
         case actions.MODIFY_USER_VALUE_ERROR :
             return {...state, isLoading : false, error : action.payload};
+        case actions.MODIFY_ARRAY_VALUE :
+            return {...state, isLoading : true};
+        case actions.MODIFY_ARRAY_VALUE_OK :
+            return {...state, isLoading : false, error : false, user : action.payload};
+        case actions.MODIFY_ARRAY_VALUE_ERROR :
+            return {...state, isLoading : false, error : action.payload};
         default :
             return state;
     }

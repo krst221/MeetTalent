@@ -18,8 +18,12 @@ export const CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD_ERROR";
 export const MODIFY_USER_VALUE = "MODIFY_USER_VALUE";
 export const MODIFY_USER_VALUE_OK = "MODIFY_USER_VALUE_OK";
 export const MODIFY_USER_VALUE_ERROR = "MODIFY_USER_VALUE_ERROR";
+export const MODIFY_ARRAY_VALUE = "MODIFY_ARRAY_VALUE";
+export const MODIFY_ARRAY_VALUE_OK = "MODIFY_ARRAY_VALUE_OK";
+export const MODIFY_ARRAY_VALUE_ERROR = "MODIFY_ARRAY_VALUE_ERROR";
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
+
     dispatch({type: "LOGIN_USER"})
     try {
         const result = await API.post("user/login", formdata)
@@ -46,11 +50,20 @@ export const registerUser = (formdata, navigate) => async(dispatch) => {
 export const modifyUserValue = (formData) => async(dispatch) => {
     dispatch({type: "MODIFY_USER_VALUE"})
     try {    
-        const result = await API.put("user/editValue", formData);
-        localStorage.setItem('user', JSON.stringify(result.data));
+        await API.put("user/editValue", formData);
         dispatch({type: "MODIFY_USER_VALUE_OK"})
     } catch (error) {  
         dispatch({type: "MODIFY_USER_VALUE_ERROR"})
+    }
+}
+
+export const modifyUserArray = (formData) => async(dispatch) => {
+    dispatch({type: "MODIFY_USER_ARRAY"})
+    try {    
+        await API.put("user/editArray", formData);
+        dispatch({type: "MODIFY_USER_ARRAY_OK"})
+    } catch (error) {  
+        dispatch({type: "MODIFY_USER_ARRAY_ERROR"})
     }
 }
 

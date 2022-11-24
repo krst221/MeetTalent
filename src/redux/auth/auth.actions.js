@@ -11,6 +11,7 @@ export const REGISTER_COMPANY_OK = "REGISTER_COMPANY_OK";
 export const REGISTER_COMPANY_ERROR = "REGISTER_COMPANY_ERROR";
 
 
+
 export const loginUser = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "LOGIN_USER"})
     try {
@@ -29,9 +30,9 @@ export const loginUser = (formdata, navigate) => async(dispatch) => {
 
 export const registerUser = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_USER"})
-    try {
-        
-        const result = await API.post("user/register", formdata)
+
+    try {    
+        await API.post("user/register", formdata)
         dispatch({type: "REGISTER_USER_OK"})
         navigate('/login')
 
@@ -41,16 +42,43 @@ export const registerUser = (formdata, navigate) => async(dispatch) => {
     }
 }
 
+
 export const registerCompany = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_COMPANY"})
     try {
         
         const result = await API.post("company/register", formdata)
         dispatch({type: "REGISTER_COMPANY_OK"})
+
+export const verifyMail = (formdata, navigate) => async(dispatch) => {
+    dispatch({type: "VERIFY_MAIL"})
+    try {
+        await API.post("user/mail", formdata)
+        localStorage.setItem('verify', true)
+        localStorage.setItem('email', formdata.email)
+        dispatch({type: "VERIFY_MAIL_OK"})
+        const verify = localStorage.getItem('verify');
+        if(verify === 'true') navigate('/login/recover')
+
+    } catch (error) {
+        
+        dispatch({type: "VERIFY_MAIL_ERROR"})
+    }
+}
+
+export const changePassword = (formdata, navigate) => async(dispatch) => {
+    dispatch({type: "CHANGE_PASSWORD"})
+    try {
+        await API.put("user/change", formdata)
+        localStorage.setItem('verify', false)
+        localStorage.setItem('email', null)
+        dispatch({type: "CHANGE_PASSWORD_OK"})
+
         navigate('/login')
 
     } catch (error) {
         
-        dispatch({type: "REGISTER_COMPANY_ERROR"})
+        dispatch({type: "CHANGE_PASSWORD_ERROR"})
+
     }
 }

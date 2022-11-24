@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
 import Button from '../../../components/Button/Button'
 import Loading from '../../../components/Loading/Loading'
 import { registerCompany } from '../../../redux/auth/auth.actions'
@@ -9,7 +10,9 @@ import './Company.scss'
 
 const Company = () => {
   
+
   const {register, handleSubmit, formState : {errors}, getValues} = useForm()
+
   const {isLoading} = useSelector((state) => state.auth)
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -64,7 +64,7 @@ function App() {
         <Route path="/user/offers/:id" element={<Id></Id>}></Route>
         <Route path="/user/offers/:id/candidate" element={<Candidate></Candidate>}></Route>
         <Route path="/user/offers/:id/hackathon" element={<Hackathon></Hackathon>}></Route>
-        <Route path="/user/offers/:id/meeting" element={<Meeting></Meeting>}></Route>
+        <Route path="/user/offers/:id/meeting" element={<Meeting></Meeting>}></Route>       
       </Routes>
     </Router>
     </Provider>

@@ -13,9 +13,9 @@ const Offer = () => {
   return (
     <div className='b-offer-container'>
       <div className='b-offer-header'>
-        <BackButton></BackButton>
+        <BackButton src="../../assets/back.svg"></BackButton>
         <h5 className='b-offer-title'>Descripción de la oferta</h5>
-        <Cross></Cross>
+        <Cross src="../../assets/cross.svg"></Cross>
       </div>
       <div className='b-offer-duplicate'>
         <h5 className='b-offer-title'>Duplicar la oferta</h5>

@@ -10,6 +10,7 @@ import KeywordTag from '../../../../components/KeywordTag/KeywordTag'
 import Loading from '../../../../components/Loading/Loading'
 import { modifyUserValue } from '../../../../redux/auth/auth.actions'
 import { modifyUserArray } from '../../../../redux/auth/auth.actions'
+import { deleteArrayElement } from '../../../../redux/auth/auth.actions'
 import { UserContext } from '../../../../shared/contexts/UserContext'
 import './Index.scss'
 
@@ -35,11 +36,28 @@ const Index = () => {
   const submitArray = (formData) => {
     const key = Object.keys(formData)[0];
     const newUser = {...user, [key]: [...user[key], formData[key]]};
-    console.log(newUser);
     setUser(newUser);
     localStorage.setItem('user', JSON.stringify(newUser));
     formData._id = user._id;
     dispatch(modifyUserArray(formData));
+    setEdit(0);
+    reset();
+  }
+
+  const deleteTag = (tag) => {
+    const newUser = {...user, tags: [...user.tags.filter((a) => a !== tag)]}
+    setUser(newUser);
+    localStorage.setItem('user', JSON.stringify(newUser));
+    dispatch(deleteArrayElement(newUser));
+    setEdit(0);
+    reset();
+  }
+
+  const deleteStudy = (study) => {
+    const newUser = {...user, studies: [...user.studies.filter((a) => a.degree !== study.degree )]}
+    setUser(newUser);
+    localStorage.setItem('user', JSON.stringify(newUser));
+    dispatch(deleteArrayElement(newUser));
     setEdit(0);
     reset();
   }
@@ -82,7 +100,7 @@ const Index = () => {
               </form>
             </div> : ''}
         </div>
-        <div class='b-container--sn'>
+        <div className='b-container--sn'>
           <img src={tw} alt='' className='b-icon--sn' />
           <img src={ig} alt='' className='b-icon--sn' />
           <img src={fb} alt='' className='b-icon--sn' />
@@ -101,7 +119,7 @@ const Index = () => {
               </div> : ''}
           </div>
           <div className='b-profile--detail--container'>
-            {user.location ? <p>🌆 {user.location.city}</p> : ''}
+            {user.location ? <p>🌆 {user.location.city}{user.location.detail ? <>, {user.location.detail}</> : '' }{user.location.zip ? <>, {user.location.zip}</> : '' }</p> : ''}
             {editMode && edit !== 5 ? <div className='b-edit' onClick={() => setEdit(5)}>Editar</div> : ''}
             {edit === 5 ? 
               <div className='b-profile--detail--form'>
@@ -136,7 +154,7 @@ const Index = () => {
               </div> : ''}
           </div>
         </div>
-        <div className='b-profile--detail--container'>
+        <div className='b-profile--vert'>
           <h3>Palabras clave del perfil</h3>
           {editMode && edit !== 8 ? <div className='b-edit' onClick={() => setEdit(8)}>Editar</div> : ''}
           {edit === 8 ? 
@@ -146,11 +164,11 @@ const Index = () => {
                 <button type='submit'>Aceptar cambios</button>
               </form>
             </div> : ''}
-          <div>
-            {user.tags && user.tags.map((tag, index) => <KeywordTag tag={tag} index={index} />)}
+          <div className='b-profile--detail--tags'>
+            {user.tags && user.tags.map((tag, index) => <div key={index} onClick={() => deleteTag(tag)}><KeywordTag tag={tag} index={index} /></div>)}
           </div>
         </div>
-        <div className='b-profile--detail--container'>
+        <div className='b-profile--vert'>
           <h3>Formación académica</h3>
           {editMode && edit !== 9 ? <div className='b-edit' onClick={() => setEdit(9)}>Editar</div> : ''}
           {edit === 9 ? 
@@ -162,7 +180,9 @@ const Index = () => {
                 <button type='submit'>Aceptar cambios</button>
               </form>
             </div> : ''}
-          {user.studies && user.studies.map((study) => <div><h4>{study.type}</h4><h5>{study.degree}</h5><p>{study.location}</p></div>)}
+            <div className='b-profile--detail--tags'>
+              {user.studies && user.studies.map((study, index) => <div className='b-profile--study' key={index} onClick={() => deleteStudy(study)}><h4>{study.type}</h4><h5>{study.degree}</h5><p>{study.location}</p></div>)}
+            </div>
         </div>
       </div>}
     </div>

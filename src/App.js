@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home/Home';
+// import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import VerifyMail from './pages/Login/Recover/VerifyMail';
 import RecoverPassword from './pages/Login/Recover/RecoverPassword';
@@ -43,7 +43,7 @@ function App() {
       <UserContext.Provider value={{user, setUser}}>
         <Router> 
           <Routes>
-            <Route path="/" element={<Home></Home>}></Route>  
+            <Route path="/" element={<Login></Login>}></Route>  
             <Route path="/register/user" element={<User></User>}></Route>
             <Route path="/register/company" element={<Company></Company>}></Route>
             <Route path="/register/sync" element={<Sync></Sync>}></Route> 

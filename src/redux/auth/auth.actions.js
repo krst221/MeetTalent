@@ -35,7 +35,7 @@ export const loginUser = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('token', result.data.token)
         localStorage.setItem('user', JSON.stringify(result.data.user))
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
-        navigate('/')
+        navigate('/user/profile')
     } catch (error) {
         dispatch({type: "LOGIN_USER_ERROR",  payload : error.message})
     }
@@ -66,6 +66,16 @@ export const modifyUserArray = (formData) => async(dispatch) => {
     dispatch({type: "MODIFY_USER_ARRAY"})
     try {    
         await API.put("user/editArray", formData);
+        dispatch({type: "MODIFY_USER_ARRAY_OK"})
+    } catch (error) {  
+        dispatch({type: "MODIFY_USER_ARRAY_ERROR"})
+    }
+}
+
+export const deleteArrayElement = (newUser) => async(dispatch) => {
+    dispatch({type: "MODIFY_USER_ARRAY"})
+    try {    
+        await API.put("user/edit", newUser);
         dispatch({type: "MODIFY_USER_ARRAY_OK"})
     } catch (error) {  
         dispatch({type: "MODIFY_USER_ARRAY_ERROR"})

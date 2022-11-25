@@ -1,9 +1,26 @@
 .b-profile {
     background-color: rgb(13, 32, 42);
-    height: 80.9vh;
+    min-height: 80.9vh;
     margin: 0;
     padding: 0;
     padding-top: 19.1vh;
+
+    button {
+        font-family: Montserrat-Medium;
+        width: 100px;
+        font-size: 10px;
+        height: 20px;
+        margin: 1px;
+        background-color: lightgray;
+        &:hover {
+            background-color: rgb(170, 170, 170);
+        }
+    }
+
+    input {
+        font-family: Montserrat-Medium;
+        width: 200px;
+    }
 
     &--image {
         position: absolute;
@@ -13,10 +30,19 @@
         justify-content: center;
     }
 
+    &--vert {
+        position: relative;
+        margin: 10px;
+    }
+
+    &--study {
+        margin: 0 20px;
+        cursor: pointer;
+    }
+
     &--detail {
         background-color: white;
-        border-top-left-radius: 40px;
-        border-top-right-radius: 40px;
+        border-radius: 40px;
         display: flex;
         position: relative;
         flex-direction: column;
@@ -28,15 +54,14 @@
         padding-top: 10vh;
         font-family: Montserrat-SemiBold;
 
+        &--tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
         &--form {
             margin: 30px 20px 10px 20px;
-
-            button {
-                background-color: lightgray;
-                &:hover {
-                    background-color: rgb(170, 170, 170);
-                }
-            }
         }
     
         h2, h3 {
@@ -67,7 +92,7 @@
         &--list {
             display: flex;
             margin: 0 20vw;
-            width: 450px;
+            width: 350px;
             flex-direction: column;
             align-items: flex-start;
         }
@@ -75,18 +100,6 @@
             display: flex;
             position: relative;
             align-items: center;
-    
-            button {
-                font-family: Montserrat-Medium;
-                width: 100px;
-                font-size: 10px;
-                height: 20px;
-                margin: 1px;
-            }
-    
-            input {
-                font-family: Montserrat-Medium;
-            }
         }
     }
     
@@ -94,6 +107,7 @@
         display: flex;
         justify-content: space-between;
         width: 200px;
+        margin: 10px;
     }
     
     .b-icon--sn {

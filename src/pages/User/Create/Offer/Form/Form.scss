@@ -1,10 +1,25 @@
-.b-create-offer-container {
+.b-create-offer-form {
+    &-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: rgb(248, 250, 251);
+    }
+    &-header {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+    }
+    &-select {
+        height: 30pt;
+        border-radius: 8px;
+        border: 0.5px solid rgb(228, 235, 239);
+    }
 }
+
+    
 
 .b-createoffer-input {
     background-color: white;

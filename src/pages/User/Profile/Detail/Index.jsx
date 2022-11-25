@@ -42,7 +42,7 @@ const Index = () => {
   return (
     <>
       {user.length < 1 ? <Loading /> : 
-      <div>
+      <div className='b-profile--detail'>
         <div>        
           <ImageUser src={user.picture} />
           {edit !== 1 ? <div onClick={() => setEdit(1)}>Editar</div> : ''}

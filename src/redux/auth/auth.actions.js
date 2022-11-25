@@ -114,7 +114,7 @@ export const changePassword = (formdata, navigate) => async(dispatch) => {
 export const registerOffer = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_OFFER"})
     try {    
-        await API.post("user/register", formdata)
+        await API.post("offer/add", formdata)
         dispatch({type: "REGISTER_OFFER_OK"})
         navigate('/login')
     } catch (error) {  
@@ -124,7 +124,8 @@ export const registerOffer = (formdata, navigate) => async(dispatch) => {
 
 export const getOffers = () => async(dispatch) => {
     dispatch({type: "GET_OFFERS"})
-    try {    
+    try {  
+        console.log("hola");  
         const res = await API.get("offer/getAll")
         localStorage.setItem('offers', JSON.stringify(res.data));
         dispatch({type: "GET_OFFERS_OK"})

@@ -1,0 +1,33 @@
+.b-offers {
+    &-container {
+        background-color: rgb(13, 32, 42);
+        height: 100vh;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &-header {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    &-search {
+        display: flex;
+        justify-content: center;
+    }
+    &-boxes-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    &-showbuttons {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    &-links {
+        cursor: pointer;
+        color: rgb(1,255,161);
+    }
+}

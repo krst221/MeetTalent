@@ -3,7 +3,9 @@ import './Search.scss'
 
 const Search = () => {
   return (
-    <div>Search</div>
+    <input type="text" className='b-component-search' placeholder='Buscar'>
+
+    </input>
   )
 }
 

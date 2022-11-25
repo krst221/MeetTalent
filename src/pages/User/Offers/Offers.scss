@@ -1,11 +1,11 @@
 .b-offers {
     &-container {
         background-color: rgb(13, 32, 42);
-        height: 100vh;
+        min-height: 100vh;
         color: white;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
     &-header {
         display: flex;
@@ -28,6 +28,13 @@
     }
     &-links {
         cursor: pointer;
-        color: rgb(1,255,161);
+        color: white;
     }
+}
+
+.b-position-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50vw;
+    transform: translate(-50%, 0%);
 }

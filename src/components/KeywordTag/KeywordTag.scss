@@ -1,13 +1,21 @@
 .red {
-    background-color: red;
+    background-color:rgb(216, 238, 248);
+    color:black;
 }
 
 .blue {
-    background-color: blue;
+    background-color: rgb(0, 179, 205);
+    color: white;
 }
 
 .b-tag {
-    width: 40px;
-    height: 40px;
-    color: white;
+    width: 70px;
+    height: 39px;
+    border-radius: 8px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    cursor: pointer;
 }

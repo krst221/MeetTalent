@@ -10,6 +10,7 @@ import Loading from '../../../../components/Loading/Loading'
 
 
 const Offer = () => {
+  const {register, handleSubmit, formState : {errors}} = useForm()
   const dispatch = useDispatch();
   const [offers, setOffers] = useState([]);
   const [length, setLength] = useState(0);
@@ -17,11 +18,14 @@ const Offer = () => {
   useEffect(() => {
     dispatch(getOffers());
     setOffers(JSON.parse(localStorage.getItem('offers')));
-  }, [dispatch])
-  
-  console.log(length);
+    if(offers.length >= 4) setLength(4);
+    else setLength(offers.length);
+  }, [dispatch, offers.length])
 
-  const {register, handleSubmit, formState : {errors}} = useForm()
+  const setOffer = (offer) => {
+    console.log(offer);
+    localStorage.setItem('copyoffer', JSON.stringify(offer));
+  }
 
   return (
     <div className='b-offer-container'>
@@ -33,11 +37,22 @@ const Offer = () => {
       <div className='b-offer-duplicate'>
         <h5 className='b-offer-title'>Duplicar la oferta</h5>
         {offers.length < 1 ? <Loading /> : 
-          [...offers].reverse().slice(0,3).map((offer, index) => <Button key={index} className={"b-offer-button"} text={offer.title}></Button>)}
-        {length < 4 ? <Button className={"b-offer-button"} text={"Administrativo"}></Button> : ''}
-        {length < 4 ? <Button className={"b-offer-button"} text={"Project Manager"}></Button> : ''}
-        {length < 4 ? <Button className={"b-offer-button"} text={"Programador"}></Button> : ''}
-        {length < 4 ? <Button className={"b-offer-button"} text={"Especialista en marketing digital"}></Button> : ''}
+          [...offers].reverse().slice(0,3).map((offer, index) => <button key={index} className={"b-offer-button"} onClick={() => setOffer(offer)}>{offer.title}</button>)}
+        {length === 0 ? <>
+            <button className={"b-offer-button"} text={"Administrativo"}></button>
+            <button className={"b-offer-button"} text={"Project Manager"}></button>
+            <button className={"b-offer-button"} text={"Programador"}></button>
+            <button className={"b-offer-button"} text={"Especialista en marketing digital"}></button>
+          </> : length === 1 ? <>
+            <button className={"b-offer-button"} text={"Project Manager"}></button>
+            <button className={"b-offer-button"} text={"Programador"}></button>
+            <button className={"b-offer-button"} text={"Especialista en marketing digital"}></button>
+          </> : length === 2 ? <>
+            <button className={"b-offer-button"} text={"Programador"}></button>
+            <button className={"b-offer-button"} text={"Especialista en marketing digital"}></button>
+          </> : length === 3 ? <>
+            <button className={"b-offer-button"} text={"Especialista en marketing digital"}></button>
+          </> : ''}
       </div>
       <form className='b-offer-form' onSubmit={(handleSubmit())}>
         <h5 className='b-offer-title'>Título de la nueva oferta</h5>

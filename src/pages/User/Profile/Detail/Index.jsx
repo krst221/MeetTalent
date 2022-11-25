@@ -29,7 +29,7 @@ const Index = () => {
 
   const submitArray = (formData) => {
     const key = Object.keys(formData)[0];
-    const newUser = {...user, [key]: [...[key], formData[key]]};
+    const newUser = {...user, [key]: [...user[key], formData[key]]};
     console.log(newUser);
     setUser(newUser);
     localStorage.setItem('user', JSON.stringify(newUser));

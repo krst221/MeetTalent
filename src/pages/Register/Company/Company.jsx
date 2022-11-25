@@ -32,7 +32,7 @@ const Company = () => {
             })}/>
             <div className='b-errors-container'>
             {errors.name && <>
-            {errors.name.type === "required" && <p className='b-login-error'>{errors.name.message}</p>}
+            {errors.name.type === "required" && <p className='b-login-error--sec'>{errors.name.message}</p>}
             </>}
             </div>
             <label className='b-regcompany-label'>CIF</label>
@@ -41,7 +41,7 @@ const Company = () => {
             })}/>
             <div className='b-errors-container'>
             {errors.ID && <>
-            {errors.ID.type === "required" && <p className='b-login-error'>{errors.ID.message}</p>}
+            {errors.ID.type === "required" && <p className='b-login-error--sec'>{errors.ID.message}</p>}
             </>}
             </div>
             <label className='b-regcompany-label'>Email</label>
@@ -55,8 +55,8 @@ const Company = () => {
             })}/>
             <div className='b-errors-container'>
             {errors.email && <>
-            {errors.email.type === "required" && <p className='b-login-error'>{errors.email.message}</p>}
-            {errors.email.type === "pattern" && <p className='b-login-error'>{errors.email.message}</p>}
+            {errors.email.type === "required" && <p className='b-login-error--sec'>{errors.email.message}</p>}
+            {errors.email.type === "pattern" && <p className='b-login-error--sec'>{errors.email.message}</p>}
             </>}
             </div>
             <label className='b-regcompany-label'>Contraseña</label>
@@ -70,8 +70,8 @@ const Company = () => {
             })}/>
             <div className='b-errors-container'>
             {errors.password && <>
-            {errors.password.type === "required" && <p className='b-login-error'>{errors.password.message}</p>}
-            {errors.password.type === "pattern" && <p className='b-login-error'>{errors.password.message}</p>}
+            {errors.password.type === "required" && <p className='b-login-error--sec'>{errors.password.message}</p>}
+            {errors.password.type === "pattern" && <p className='b-login-error--sec'>{errors.password.message}</p>}
             </>}
             </div>
             <label className='b-regcompany-label'>Confirmar contraseña</label>
@@ -86,9 +86,9 @@ const Company = () => {
             })}/>
             <div className='b-errors-container'>
             {errors.password2 && <>
-            {errors.password2.type === "required" && <p className='b-login-error'>{errors.password2.message}</p>}
-            {errors.password2.type === "pattern" && <p className='b-login-error'>{errors.password2.message}</p>}
-            {errors.password2.type === "validate" && <p className='b-login-error'>{errors.password2.message}</p>}
+            {errors.password2.type === "required" && <p className='b-login-error--sec'>{errors.password2.message}</p>}
+            {errors.password2.type === "pattern" && <p className='b-login-error--sec'>{errors.password2.message}</p>}
+            {errors.password2.type === "validate" && <p className='b-login-error--sec'>{errors.password2.message}</p>}
             </>}
             </div>
             <label className='b-checktext'><input type="checkbox"></input>Al crear una cuenta, acepta automáticamente todos los <span className='b-reguser-span'>términos y condiciones</span> relacionados con <span className='b-reguser-span'>MeetTalent</span></label>

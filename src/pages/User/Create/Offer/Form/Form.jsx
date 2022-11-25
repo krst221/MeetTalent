@@ -8,6 +8,7 @@ import { registerOffer } from '../../../../../redux/auth/auth.actions'
 import Button from '../../../../../components/Button/Button'
 import BackButton from '../../../../../components/BackButton/BackButton'
 import { UserContext } from '../../../../../shared/contexts/UserContext'
+import Cross from '../../../../../components/Cross/Cross'
 
 
 const Form = () => {
@@ -26,9 +27,10 @@ const Form = () => {
 
   return (
     <div className='b-create-offer-form-container'>
-      <div className='b-create-offer-form-header'>
+      <div className='b-offer-header'>
         <BackButton src="../../../assets/back.svg"></BackButton>
         <h5 className='b-offer-title'>Descripción de la oferta</h5>
+        <Cross src="../../../assets/cross.svg"></Cross>
       </div>
         {isLoading === true ? <Loading></Loading> :
         <form onSubmit={(handleSubmit(enviar))}>

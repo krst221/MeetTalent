@@ -35,7 +35,8 @@ export const loginUser = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('token', result.data.token)
         localStorage.setItem('user', JSON.stringify(result.data.user))
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
-        navigate('/user/profile')
+        console.log('logeao');
+        navigate('/user/profile/')
     } catch (error) {
         dispatch({type: "LOGIN_USER_ERROR",  payload : error.message})
     }
@@ -135,7 +136,6 @@ export const registerOffer = (formdata, navigate) => async(dispatch) => {
 export const getOffers = () => async(dispatch) => {
     dispatch({type: "GET_OFFERS"})
     try {  
-        console.log("hola");  
         const res = await API.get("offer/getAll")
         localStorage.setItem('offers', JSON.stringify(res.data));
         dispatch({type: "GET_OFFERS_OK"})

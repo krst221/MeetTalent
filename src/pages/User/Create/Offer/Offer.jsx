@@ -7,22 +7,25 @@ import Button from '../../../../components/Button/Button'
 import Cross from '../../../../components/Cross/Cross'
 import './Offer.scss'
 import Loading from '../../../../components/Loading/Loading'
+import { useNavigate } from 'react-router-dom'
 
 
 const Offer = () => {
-  const {register, handleSubmit, formState : {errors}} = useForm()
+  const {register, handleSubmit, formState : {errors}, reset} = useForm()
   const dispatch = useDispatch();
   const [offers, setOffers] = useState([]);
   const [copyOffer, setCopyOffer] = useState([]);
   const [length, setLength] = useState(0);
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(getOffers());
     setOffers(JSON.parse(localStorage.getItem('offers')));
     if(offers.length >= 4) setLength(4);
     else setLength(offers.length);
     setCopyOffer(JSON.parse(localStorage.getItem('copyoffer')));
-  }, [dispatch, offers.length])
+    reset();
+  }, [dispatch, offers.length, reset])
 
   const setOffer = (offer) => {
     if(offer === 'e') {
@@ -109,6 +112,11 @@ const Offer = () => {
     setCopyOffer(JSON.parse(localStorage.getItem('copyoffer')));
   }
 
+  const submit = (formdata) => {
+    console.log(formdata, localStorage.getItem('copyoffer'));
+    navigate('/user/create/offer/form');
+  }
+
   return (
     <div className='b-offer-container'>
       <div className='b-offer-header'>
@@ -119,7 +127,7 @@ const Offer = () => {
       <div className='b-offer-duplicate'>
         <h5 className='b-offer-title'>Duplicar la oferta</h5>
         {offers.length < 1 ? <Loading /> : 
-          [...offers].reverse().slice(0,3).map((offer, index) => <button key={index} className={"b-offer-button"} onClick={() => setOffer(offer)}>{offer.title}</button>)}
+          [...offers].reverse().slice(0,4).map((offer, index) => <button key={index} className={"b-offer-button"} onClick={() => setOffer(offer)}>{offer.title}</button>)}
         {length === 0 ? <>
             <button className={"b-offer-button"} onClick={() => setOffer('a')}>{"Administrativo"}</button>
             <button className={"b-offer-button"} onClick={() => setOffer('m')}>{"Project Manager"}</button>
@@ -136,23 +144,23 @@ const Offer = () => {
             <button className={"b-offer-button"} onClick={() => setOffer('e')}>{"Especialista en marketing digital"}</button>
           </> : ''}
       </div>
-      <form className='b-offer-form' onSubmit={(handleSubmit())}>
+      <form className='b-offer-form' onSubmit={(handleSubmit(submit))}>
         <h5 className='b-offer-title'>Título de la nueva oferta</h5>
-        <input className='b-offer-button' type="text" defaultValue={copyOffer.title} placeholder='Escribe el título' {...register("title", {
+        <input className='b-offer-button' type="text" defaultValue={copyOffer ? copyOffer.title : ''} placeholder='Escribe el título' {...register("title", {
           required : "El campo no puede ser vacío"
         })}/>
         <div className='b-errors-container'>
-        {errors.email && <>
-          {errors.email.type === "required" && <p className='b-login-error'>{errors.email.message}</p>}
+        {errors.title && <>
+          {errors.title.type === "required" && <p className='b-login-error'>{errors.title.message}</p>}
         </>}
         </div>
+        <div className='b-offer-spancontainer'>
+          <span>¿Cómo crear un título efectivo?</span>
+        </div>
+        <div className='b-offer-container-button'>
+          <Button className="b-form-button" text="Comenzar"></Button>
+        </div>    
       </form>
-      <div className='b-offer-spancontainer'>
-        <span>¿Cómo crear un título efectivo?</span>
-      </div>
-      <div className='b-offer-container-button'>
-        <Button className="b-form-button" text="Comenzar"></Button>
-      </div>    
     </div>
   )
 }

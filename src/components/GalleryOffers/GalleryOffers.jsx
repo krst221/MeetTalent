@@ -18,13 +18,13 @@ const GalleryOffers = ({offers}) => {
     return (
     <div className='b-component-galleryoffers'>
        <div className='b-offers-showbuttons'>
-          <h5 className='b-offers-links' onClick={() => setShowOpenOffers(true)}>Abiertas</h5>
-          <h5 className='b-offers-links' onClick={() => setShowOpenOffers(false)}>Cerradas</h5>
+          <h5 className= {`b-offers-links ${showOpenOffers ? "dark" : ""}`} onClick={() => setShowOpenOffers(true)}>Abiertas</h5>
+          <h5 className={`b-offers-links ${showOpenOffers ? "" : "dark"}`} onClick={() => setShowOpenOffers(false)}>Cerradas</h5>
         </div>
         <div className='b-offers-boxes-container'>
          {showOpenOffers ? openOffers.map((offer) => <Offer offer={offer}></Offer>) :
           closeOffers.map((offer) => <Offer offer={offer}></Offer>)} 
-      </div>
+        </div>
     </div>
   )
 }

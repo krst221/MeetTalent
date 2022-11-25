@@ -21,7 +21,7 @@ const Form = () => {
       console.log(formdata);
       formdata.company = user._id;
       dispatch(registerOffer(formdata, navigate))
-      
+      localStorage.setItem("copyoffer", JSON.stringify(formdata))
     }
 
   return (
@@ -89,7 +89,7 @@ const Form = () => {
               <option value="Australia">Australia</option>
             </select>
             <h5>Requisitos de candidato</h5>
-            <textarea className='b-create-offer-form-textarea' {...register("conditions")}></textarea>
+            <textarea className='b-create-offer-form-textarea' {...register("conditions.requisites")}></textarea>
             <h5>Condiciones</h5>
             <select className='b-create-offer-form-select' {...register("conditions.salary")}>
               <option value="0">Salario</option>

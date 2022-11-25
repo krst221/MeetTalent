@@ -30,7 +30,9 @@ const Offers = () => {
         <Search></Search>
       </div>
       {offers.length < 1 ? <Loading /> : <GalleryOffers offers={offers} />}
-      <NavBar></NavBar>
+      <div className='b-position-nav'>
+        <NavBar></NavBar>
+      </div>
     </div>
   )
 }

@@ -37,7 +37,8 @@ const Offer = () => {
         conditions: {
           salary: '24K - 28K',
           shift: 'Jornada completa',
-          contract: 'Contrado indefinido'
+          contract: 'Contrado indefinido',
+          availability: 'Inmediata'
         },
         sector: 'Marketing',
         description: 'Marketing digital internacional',
@@ -56,7 +57,8 @@ const Offer = () => {
         conditions: {
           salary: '27K - 31K',
           shift: 'Jornada completa',
-          contract: 'Contrado indefinido'
+          contract: 'Contrado indefinido',
+          availability: '1 mes'
         },
         sector: 'Programación',
         description: 'Programación multilenguaje para el sector de robótica',
@@ -75,7 +77,8 @@ const Offer = () => {
         conditions: {
           salary: '35K - 38K',
           shift: 'Jornada completa',
-          contract: 'Contrado de prueba'
+          contract: 'Contrado de prueba',
+          availability: '15 días'
         },
         sector: 'Marketing',
         description: 'Jefe de proyecto dedicado a la publicidad y RRPP',
@@ -94,7 +97,8 @@ const Offer = () => {
         conditions: {
           salary: '18K - 20K',
           shift: 'Jornada completa',
-          contract: 'Contrado de prueba'
+          contract: 'Contrado de prueba',
+          availability: '1 mes'
         },
         sector: 'Inmobiliaria',
         description: 'Encargado de gestionar alquileres e hipotecas',

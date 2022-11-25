@@ -36,7 +36,7 @@ export const loginUser = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('user', JSON.stringify(result.data.user))
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
         console.log('logeao');
-        navigate('/user/profile/')
+        navigate('/user/profile/detail/')
     } catch (error) {
         dispatch({type: "LOGIN_USER_ERROR",  payload : error.message})
     }

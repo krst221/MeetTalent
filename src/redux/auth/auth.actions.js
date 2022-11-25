@@ -112,7 +112,7 @@ export const changePassword = (formdata, navigate) => async(dispatch) => {
 export const registerOffer = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_OFFER"})
     try {    
-        await API.post("user/register", formdata)
+        await API.post("offer/add", formdata)
         dispatch({type: "REGISTER_OFFER_OK"})
         navigate('/login')
     } catch (error) {  

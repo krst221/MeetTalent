@@ -16,6 +16,16 @@
         height: 30pt;
         border-radius: 8px;
         border: 0.6px solid rgb(228, 235, 239);
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+    &-textarea {
+        resize: none;
+        border-radius: 8px;
+        border: 0.6px solid rgb(228, 235, 239);
+        margin-bottom: 10px;
+        height: 80px;
+        cursor: pointer;
     }
 }
 

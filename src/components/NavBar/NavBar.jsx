@@ -25,7 +25,7 @@ const NavBar = () => {
         <small className='b-span-icon'>Notificaciones</small>
       </div>
       <div className='b-complete-icon'>
-        <img  className='b-icon' src='.././assets/bag.svg' alt="" onClick={() => navigate("/user/create/test")}></img>
+        <img  className='b-icon' src='.././assets/bag.svg' alt="" onClick={() => navigate("/user/offers")}></img>
         <small className='b-span-icon'>Ofertas</small>
       </div>
     </div>

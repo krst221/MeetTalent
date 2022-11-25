@@ -3,7 +3,7 @@ import './Offer.scss'  //Container de las ofertas
 
 const Offer = () => {
   return (
-    <div>
+    <div className='b-component-offer-container'>
       
     </div>
   )

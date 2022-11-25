@@ -13,6 +13,8 @@ import { modifyUserArray } from '../../../../redux/auth/auth.actions'
 import { deleteArrayElement } from '../../../../redux/auth/auth.actions'
 import { UserContext } from '../../../../shared/contexts/UserContext'
 import './Index.scss'
+import BackButton from '../../../../components/BackButton/BackButton'
+import Heart from '../../../../components/Heart/Heart'
 
 const Index = () => {
 
@@ -64,6 +66,11 @@ const Index = () => {
 
   return (
     <div className='b-profile'>
+      <div className='b-profile-header'>
+        <BackButton src="../../../assets/back.svg"></BackButton>
+        <h3 className='b-profile-title'>Candidatos</h3>
+        <Heart src="../../../assets/heart.svg"></Heart>
+      </div>
       {user.length < 1 ? <Loading /> : 
       <div className='b-profile--detail'>
       <img src={pen} className='b-edit--pen' alt='' onClick={() => setEditMode(!editMode)}/>    
@@ -130,7 +137,7 @@ const Index = () => {
                   <button type='submit'>Aceptar cambios</button>
                 </form>
               </div> : ''}
-          </div>
+          </div> 
           <div className='b-profile--detail--container'>
             <p>✉ {user.email}</p>
             {editMode && edit !== 6 ? <div className='b-edit' onClick={() => setEdit(6)}>Editar</div> : ''}
@@ -155,7 +162,7 @@ const Index = () => {
           </div>
         </div>
         <div className='b-profile--vert'>
-          <h3>Palabras clave del perfil</h3>
+          <h4>Palabras clave del perfil</h4>
           {editMode && edit !== 8 ? <div className='b-edit' onClick={() => setEdit(8)}>Editar</div> : ''}
           {edit === 8 ? 
             <div className='b-profile--detail--form'>
@@ -169,7 +176,7 @@ const Index = () => {
           </div>
         </div>
         <div className='b-profile--vert'>
-          <h3>Formación académica</h3>
+          <h4>Formación académica</h4>
           {editMode && edit !== 9 ? <div className='b-edit' onClick={() => setEdit(9)}>Editar</div> : ''}
           {edit === 9 ? 
             <div className='b-profile--detail--form'>

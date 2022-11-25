@@ -1,9 +1,13 @@
 import React from 'react'
 import './Heart.scss'
 
-const Heart = () => {
+const Heart = ({src}) => {
   return (
-    <div>Heart</div>
+    <div>
+      <div className='b-heart'>
+            <img className='b-heart-img' src={src} alt="Botón para retroceder en la página"></img>
+        </div>
+    </div>
   )
 }
 

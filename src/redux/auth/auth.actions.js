@@ -24,9 +24,11 @@ export const MODIFY_USER_VALUE_ERROR = "MODIFY_USER_VALUE_ERROR";
 export const MODIFY_ARRAY_VALUE = "MODIFY_ARRAY_VALUE";
 export const MODIFY_ARRAY_VALUE_OK = "MODIFY_ARRAY_VALUE_OK";
 export const MODIFY_ARRAY_VALUE_ERROR = "MODIFY_ARRAY_VALUE_ERROR";
+export const GET_OFFERS = "GET_OFFERS";
+export const GET_OFFERS_OK = "GET_OFFERS_OK";
+export const GET_OFFERS_ERROR = "GET_OFFERS_ERROR";
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
-
     dispatch({type: "LOGIN_USER"})
     try {
         const result = await API.post("user/login", formdata)
@@ -117,5 +119,16 @@ export const registerOffer = (formdata, navigate) => async(dispatch) => {
         navigate('/login')
     } catch (error) {  
         dispatch({type: "REGISTER_OFFER_ERROR"})
+    }
+}
+
+export const getOffers = () => async(dispatch) => {
+    dispatch({type: "GET_OFFERS"})
+    try {    
+        const res = await API.get("offer/getAll")
+        localStorage.setItem('offers', JSON.stringify(res.data));
+        dispatch({type: "GET_OFFERS_OK"})
+    } catch (error) {  
+        dispatch({type: "GET_OFFERS_ERROR"})
     }
 }

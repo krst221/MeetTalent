@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Form.scss'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -15,15 +15,25 @@ const Form = () => {
 
     const {register, handleSubmit} = useForm()
     const {user} = useContext(UserContext);
+    const [copyOffer, setCopyOffer] = useState([]);
     const {isLoading} = useSelector((state) => state.auth)
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+      setCopyOffer(JSON.parse(localStorage.getItem('copyoffer')));
+    }, [])
+    
+    console.log(copyOffer.title);
+
     const enviar = (formdata) => {
       console.log(formdata);
       formdata.company = user._id;
       dispatch(registerOffer(formdata, navigate))
       localStorage.setItem("copyoffer", JSON.stringify(formdata))
     }
+
+
 
   return (
     <div className='b-create-offer-form-container'>
@@ -35,13 +45,14 @@ const Form = () => {
         {isLoading === true ? <Loading></Loading> :
         <form onSubmit={(handleSubmit(enviar))}>
             <h5>Título de la oferta</h5>
-            <select className='b-create-offer-form-select' {...register("title")}>
+            <select className='b-create-offer-form-select' value={copyOffer.title} {...register("title")}>
               <option value="Diseñador Web">Diseñador Web</option>
               <option value="Desarrollador Full Stack">Desarrollador Full Stack</option>
               <option value="Astronauta">Astronauta</option>
               <option value="Director de Restaurante">Director de Restaurante</option>
-              <option value="Mecánico">Mecánico</option>
+              {copyOffer.title === 'Director de Restaurante' ? '' : copyOffer.title === 'Diseñador web' ? '' : copyOffer.title === 'Desarrollador Full Stack' ? '' : copyOffer.title === 'Astronauta' ? '' : <option value={copyOffer.title}>{copyOffer.title}</option>}
             </select>
+
             <h5>Número de vacantes</h5>
             <select className='b-create-offer-form-select' {...register("vacancies")}>
               <option value="0">0</option>

@@ -23,7 +23,7 @@ const Offer = () => {
     setOffers(JSON.parse(localStorage.getItem('offers')));
     if(offers.length >= 4) setLength(4);
     else setLength(offers.length);
-    setCopyOffer(JSON.parse(localStorage.getItem('copyoffer')));
+    localStorage.setItem('copyoffer', null);
     reset();
   }, [dispatch, offers.length, reset])
 
@@ -113,7 +113,8 @@ const Offer = () => {
   }
 
   const submit = (formdata) => {
-    console.log(formdata, localStorage.getItem('copyoffer'));
+    if(localStorage.getItem('copyoffer') === 'null') localStorage.setItem('copyoffer', JSON.stringify(formdata));
+    reset();
     navigate('/user/create/offer/form');
   }
 

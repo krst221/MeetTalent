@@ -124,7 +124,8 @@ export const registerOffer = (formdata, navigate) => async(dispatch) => {
 
 export const getOffers = () => async(dispatch) => {
     dispatch({type: "GET_OFFERS"})
-    try {    
+    try {  
+        console.log("hola");  
         const res = await API.get("offer/getAll")
         localStorage.setItem('offers', JSON.stringify(res.data));
         dispatch({type: "GET_OFFERS_OK"})

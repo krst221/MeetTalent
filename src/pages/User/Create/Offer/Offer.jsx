@@ -13,6 +13,7 @@ const Offer = () => {
   const {register, handleSubmit, formState : {errors}} = useForm()
   const dispatch = useDispatch();
   const [offers, setOffers] = useState([]);
+  const [copyOffer, setCopyOffer] = useState([]);
   const [length, setLength] = useState(0);
   
   useEffect(() => {
@@ -20,11 +21,88 @@ const Offer = () => {
     setOffers(JSON.parse(localStorage.getItem('offers')));
     if(offers.length >= 4) setLength(4);
     else setLength(offers.length);
+    setCopyOffer(JSON.parse(localStorage.getItem('copyoffer')));
   }, [dispatch, offers.length])
 
   const setOffer = (offer) => {
-    console.log(offer);
-    localStorage.setItem('copyoffer', JSON.stringify(offer));
+    if(offer === 'e') {
+      const preOffer = {
+        title: 'Especialista en marketing digital',
+        vacancies: 10,
+        language: 'Inglés',
+        location: {
+          city: 'London',
+          country: 'UK'
+        },
+        conditions: {
+          salary: '24K - 28K',
+          shift: 'Jornada completa',
+          contract: 'Contrado indefinido'
+        },
+        sector: 'Marketing',
+        description: 'Marketing digital internacional',
+      }
+      localStorage.setItem('copyoffer', JSON.stringify(preOffer));
+    }
+    else if(offer === 'p') {
+      const preOffer = {
+        title: 'Programador',
+        vacancies: 3,
+        language: 'Inglés',
+        location: {
+          city: 'Tokio',
+          country: 'Japón'
+        },
+        conditions: {
+          salary: '27K - 31K',
+          shift: 'Jornada completa',
+          contract: 'Contrado indefinido'
+        },
+        sector: 'Programación',
+        description: 'Programación multilenguaje para el sector de robótica',
+      }
+      localStorage.setItem('copyoffer', JSON.stringify(preOffer));
+    }
+    else if(offer === 'm') {
+      const preOffer = {
+        title: 'Project Manager',
+        vacancies: 1,
+        language: 'Francés',
+        location: {
+          city: 'París',
+          country: 'Francia'
+        },
+        conditions: {
+          salary: '35K - 38K',
+          shift: 'Jornada completa',
+          contract: 'Contrado de prueba'
+        },
+        sector: 'Marketing',
+        description: 'Jefe de proyecto dedicado a la publicidad y RRPP',
+      }
+      localStorage.setItem('copyoffer', JSON.stringify(preOffer));
+    }
+    else if(offer === 'a') {
+      const preOffer = {
+        title: 'Administrativo',
+        vacancies: 8,
+        language: 'Español',
+        location: {
+          city: 'Madrid',
+          country: 'España'
+        },
+        conditions: {
+          salary: '18K - 20K',
+          shift: 'Jornada completa',
+          contract: 'Contrado de prueba'
+        },
+        sector: 'Inmobiliaria',
+        description: 'Encargado de gestionar alquileres e hipotecas',
+      }
+      localStorage.setItem('copyoffer', JSON.stringify(preOffer));
+    }
+    else localStorage.setItem('copyoffer', JSON.stringify(offer));
+    setCopyOffer(JSON.parse(localStorage.getItem('copyoffer')));
   }
 
   return (
@@ -39,24 +117,24 @@ const Offer = () => {
         {offers.length < 1 ? <Loading /> : 
           [...offers].reverse().slice(0,3).map((offer, index) => <button key={index} className={"b-offer-button"} onClick={() => setOffer(offer)}>{offer.title}</button>)}
         {length === 0 ? <>
-            <button className={"b-offer-button"} text={"Administrativo"}></button>
-            <button className={"b-offer-button"} text={"Project Manager"}></button>
-            <button className={"b-offer-button"} text={"Programador"}></button>
-            <button className={"b-offer-button"} text={"Especialista en marketing digital"}></button>
+            <button className={"b-offer-button"} onClick={() => setOffer('a')}>{"Administrativo"}</button>
+            <button className={"b-offer-button"} onClick={() => setOffer('m')}>{"Project Manager"}</button>
+            <button className={"b-offer-button"} onClick={() => setOffer('p')}>{"Programador"}</button>
+            <button className={"b-offer-button"} onClick={() => setOffer('e')}>{"Especialista en marketing digital"}</button>
           </> : length === 1 ? <>
-            <button className={"b-offer-button"} text={"Project Manager"}></button>
-            <button className={"b-offer-button"} text={"Programador"}></button>
-            <button className={"b-offer-button"} text={"Especialista en marketing digital"}></button>
+            <button className={"b-offer-button"} onClick={() => setOffer('m')}>{"Project Manager"}</button>
+            <button className={"b-offer-button"} onClick={() => setOffer('p')}>{"Programador"}</button>
+            <button className={"b-offer-button"} onClick={() => setOffer('e')}>{"Especialista en marketing digital"}</button>
           </> : length === 2 ? <>
-            <button className={"b-offer-button"} text={"Programador"}></button>
-            <button className={"b-offer-button"} text={"Especialista en marketing digital"}></button>
+            <button className={"b-offer-button"} onClick={() => setOffer('p')}>{"Programador"}</button>
+            <button className={"b-offer-button"} onClick={() => setOffer('e')}>{"Especialista en marketing digital"}</button>
           </> : length === 3 ? <>
-            <button className={"b-offer-button"} text={"Especialista en marketing digital"}></button>
+            <button className={"b-offer-button"} onClick={() => setOffer('e')}>{"Especialista en marketing digital"}</button>
           </> : ''}
       </div>
       <form className='b-offer-form' onSubmit={(handleSubmit())}>
         <h5 className='b-offer-title'>Título de la nueva oferta</h5>
-        <input className='b-offer-button' type="text" placeholder='Escribe el título' {...register("title", {
+        <input className='b-offer-button' type="text" defaultValue={copyOffer.title} placeholder='Escribe el título' {...register("title", {
           required : "El campo no puede ser vacío"
         })}/>
         <div className='b-errors-container'>

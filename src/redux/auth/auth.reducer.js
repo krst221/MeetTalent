@@ -2,6 +2,8 @@ import * as actions from './auth.actions';
 
 const INITAL_STATE = {
     user : null,
+    userid: null,
+    users: null,
     token : null, 
     error : false,
     isLoading : false,
@@ -26,7 +28,19 @@ const authReducer = (state = INITAL_STATE, action) => {
             return {...state, isLoading : false, error : false};
         case actions.REGISTER_USER_ERROR :
             return {...state, isLoading : false, error : action.payload};
-        case actions.REGISTER_COMPANY :
+        case actions.GET_USERS :
+            return {...state, isLoading : true};
+        case actions.GET_USERS_OK :
+            return {...state, isLoading : false, error : false, users : action.payload};
+        case actions.GET_USERS_ERROR :
+            return {...state, isLoading : false, error : action.payload};
+        case actions.GET_USER_ID :
+            return {...state, isLoading : true};
+        case actions.GET_USER_ID_OK :
+            return {...state, isLoading : false, error : false, userid : action.payload};
+        case actions.GET_USER_ID_ERROR :
+            return {...state, isLoading : false, error : action.payload};
+    case actions.REGISTER_COMPANY :
             return {...state, isLoading : true};
         case actions.REGISTER_COMPANY_OK :
             return {...state, isLoading : false, error : false};

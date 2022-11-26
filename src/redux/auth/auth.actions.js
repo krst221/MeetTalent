@@ -6,6 +6,12 @@ export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
 export const REGISTER_USER = "REGISTER_USER";
 export const REGISTER_USER_OK = "REGISTER_USER_OK";
 export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
+export const GET_USERS = "GET_USERS";
+export const GET_USERS_OK = "GET_USERS_OK";
+export const GET_USERS_ERROR = "GET_USERS_ERROR";
+export const GET_USER_ID = "GET_USER_ID";
+export const GET_USER_ID_OK = "GET_USER_ID_OK";
+export const GET_USER_ID_ERROR = "GET_USER_ID_ERROR";
 export const REGISTER_COMPANY = "REGISTER_COMPANY";
 export const REGISTER_COMPANY_OK = "REGISTER_COMPANY_OK";
 export const REGISTER_COMPANY_ERROR = "REGISTER_COMPANY_ERROR";
@@ -56,6 +62,29 @@ export const registerUser = (formdata, navigate) => async(dispatch) => {
         navigate('/login')
     } catch (error) {  
         dispatch({type: "REGISTER_USER_ERROR"})
+    }
+}
+
+export const getAllUsers = () => async(dispatch) => {
+    dispatch({type: "GET_USERS"})
+    try {    
+        const res = await API.get("user/all")
+        dispatch({type: "GET_USERS_OK"})
+        localStorage.setItem('users', JSON.stringify(res.data));
+    } catch (error) {  
+        dispatch({type: "GET_USERS_ERROR"})
+    }
+}
+
+export const getUserById = (id, navigate) => async(dispatch) => {
+    dispatch({type: "GET_USER_ID"})
+    try {    
+        const res = await API.post("user/getUser", {'id': id})
+        dispatch({type: "GET_USER_ID_OK"})
+        localStorage.setItem('userid', JSON.stringify(res.data));
+        navigate(`/user/candidates/${id}`)
+    } catch (error) {  
+        dispatch({type: "GET_USER_ID_ERROR"})
     }
 }
 

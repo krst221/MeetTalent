@@ -33,6 +33,7 @@ import User from './pages/Register/User/User';
 import Company from './pages/Register/Company/Company';
 import { UserContext } from './shared/contexts/UserContext';
 import { useState } from 'react';
+import CandidateProfile from './pages/User/Candidates/Profile/CandidateProfile';
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
             <Route path="/user/profile/detail/map" element={user ? <Map></Map> : <Login></Login>}></Route>
             <Route path="/user/profile/help" element={user ? <Help></Help> : <Login></Login>}></Route>
             <Route path="/user/candidates" element={user ? <Candidates></Candidates> : <Login></Login>}></Route>
+            <Route path="/user/candidates/:id" element={user ? <CandidateProfile></CandidateProfile> : <Login></Login>}></Route>
             <Route path="/user/create" element={user ? <Create></Create> : <Login></Login>}></Route>
             <Route path="/user/create/offer" element={user ? <Offer></Offer> : <Login></Login>}></Route>
             <Route path="/user/create/offer/form" element={user ? <Form></Form> : <Login></Login>}></Route>

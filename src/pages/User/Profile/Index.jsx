@@ -5,7 +5,7 @@ import ImageUser from '../../../components/ImageUser/ImageUser';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../../../components/NavBar/NavBar';
 import { useDispatch } from 'react-redux';
-import { getOffers } from '../../../redux/auth/auth.actions';
+import { getOffers, getAllUsers } from '../../../redux/auth/auth.actions';
 
 const Index = () => {
 
@@ -13,6 +13,7 @@ const Index = () => {
 
   useEffect(() => {
     dispatch(getOffers());
+    dispatch(getAllUsers());
   }, [dispatch])
   
   return (

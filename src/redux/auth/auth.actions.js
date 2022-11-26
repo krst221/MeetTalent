@@ -147,10 +147,10 @@ export const getOffers = () => async(dispatch) => {
     }
 }
 
-export const getCompany = (_id) => async(dispatch) => {
+export const getCompany = (offer) => async(dispatch) => {
     dispatch({type: "GET_COMPANY"})
     try {  
-        const res = await API.get("company/get", _id)
+        const res = await API.post("company/get", offer)
         localStorage.setItem('company', res.data);
         dispatch({type: "GET_COMPANY_OK"})
     } catch (error) {  

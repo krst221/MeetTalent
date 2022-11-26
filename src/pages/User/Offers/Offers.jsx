@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import BackButton from '../../../components/BackButton/BackButton'
 import NavBar from '../../../components/NavBar/NavBar'
-import Search from '../../../components/Search/Search'
 import './Offers.scss'
 import {getOffers} from "../../../redux/auth/auth.actions"
 import GalleryOffers from '../../../components/GalleryOffers/GalleryOffers'
@@ -12,8 +11,6 @@ const Offers = () => {
 
   const dispatch = useDispatch();
   const [offers, setOffers] = useState([]);
-
-
   
   useEffect(() => {
     dispatch(getOffers());

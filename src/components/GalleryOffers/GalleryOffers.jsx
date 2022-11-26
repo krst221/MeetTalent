@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import Offer from '../Offer/Offer';
 import Search from '../Search/Search';

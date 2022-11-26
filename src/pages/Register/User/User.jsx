@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import BackButton from '../../../components/BackButton/BackButton'
 import Button from '../../../components/Button/Button'
 import Loading from '../../../components/Loading/Loading'
 import { registerUser } from '../../../redux/auth/auth.actions'
@@ -22,7 +23,11 @@ const User = () => {
   return (
 
     <div className='b-reguser-container'>
-        <h4>Crear cuenta</h4>
+        <div className='b-user-header'>
+        <BackButton src="../../../assets/back.svg"></BackButton>
+        <h3 className='b-user-title'>Crear cuenta</h3>
+        <span className='b-p'></span>
+      </div>
         {isLoading === true ? <Loading></Loading> :
         <form onSubmit={(handleSubmit(enviar))}>
             <label className='b-reguser-label'>Nombre del usuario</label>

@@ -1,0 +1,10 @@
+.b-candidates {
+    &-container {
+        background-color: rgb(13, 32, 42);
+        min-height: 100vh;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}

@@ -3,7 +3,6 @@ import './Offer.scss'  //Container de las ofertas
 
 const Offer = ({offer}) => {
   
-  console.log(offer);
   return (
     <div className='b-component-offer-container'>
       <div className='b-component-offer-locker'>

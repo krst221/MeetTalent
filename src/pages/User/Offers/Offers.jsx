@@ -12,11 +12,12 @@ const Offers = () => {
 
   const dispatch = useDispatch();
   const [offers, setOffers] = useState([]);
+
+
   
   useEffect(() => {
     dispatch(getOffers());
     setOffers(JSON.parse(localStorage.getItem('offers')));
-    
   }, [dispatch])
 
 
@@ -26,15 +27,12 @@ const Offers = () => {
         <BackButton src="../../../assets/back.svg"></BackButton>
         <h5 className='b-offer-title'>Ofertas</h5>
       </div>
-      <div className='b-offers-search'>
-        <Search></Search>
-      </div>
       {offers.length < 1 ? <Loading /> : <GalleryOffers offers={offers} />}
       <div className='b-position-nav'>
         <NavBar></NavBar>
       </div>
     </div>
-  )
+  ) 
 }
 
 export default Offers

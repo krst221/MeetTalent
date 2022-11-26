@@ -15,6 +15,7 @@ import { UserContext } from '../../../../shared/contexts/UserContext'
 import './Index.scss'
 import BackButton from '../../../../components/BackButton/BackButton'
 import Heart from '../../../../components/Heart/Heart'
+import NavBar from '../../../../components/NavBar/NavBar'
 
 const Index = () => {
 
@@ -192,6 +193,9 @@ const Index = () => {
             </div>
         </div>
       </div>}
+      <div className='b-position-nav'>
+        <NavBar></NavBar>
+      </div>
     </div>
   )
 }

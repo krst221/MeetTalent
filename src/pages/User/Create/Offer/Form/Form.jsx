@@ -21,7 +21,7 @@ const Form = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getCompany(JSON.parse(localStorage.getItem('copyoffer')).company));
+      dispatch(getCompany(localStorage.getItem('copyoffer')));
     }, [dispatch])
 
     const enviar = (formdata) => {
@@ -35,13 +35,13 @@ const Form = () => {
     <div className='b-create-offer-form-container'>
       <div className='b-offer-header'>
         <BackButton src="../../../assets/back.svg"></BackButton>
-        <h5 className='b-offer-title'>Descripción de la oferta</h5>
+        <h4 className='b-offer-title'>Descripción de la oferta</h4>
         <Cross src="../../../assets/cross.svg"></Cross>
       </div>
         {isLoading === true ? <Loading></Loading> :
         <form onSubmit={(handleSubmit(enviar))}>
             <h5>Título de la oferta</h5>
-            <select className='b-create-offer-form-select'{...register("title")} defaultValue={JSON.parse(localStorage.getItem('copyoffer')).title}>
+            <select className='b-create-offer-form-select'{...register("title")}>
               {JSON.parse(localStorage.getItem('copyoffer')).title === 'Diseñador Web' ? <option value="Diseñador Web" selected>Diseñador Web</option> : <option value="Diseñador Web">Diseñador Web</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).title === 'Desarrollador Fullstack' ? <option value="Desarrollador Fullstack" selected>Desarrollador Fullstack</option> : <option value="Desarrollador Fullstack">Desarrollador Fullstack</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).title === 'Astronauta' ? <option value="Astronauta" selected>Astronauta</option> : <option value="Astronauta">Astronauta</option>}
@@ -63,6 +63,8 @@ const Form = () => {
               {JSON.parse(localStorage.getItem('copyoffer')).language === 'Italiano' ? <option value="Italiano" selected>Italiano</option> : <option value="Italiano">Italiano</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).language === 'Chino' ? <option value="Chino" selected>Chino</option> : <option value="Chino">Chino</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).language === 'Francés' ? <option value="Francés" selected>Francés</option> : <option value="Francés">Francés</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).language !== 'Español' && JSON.parse(localStorage.getItem('copyoffer')).language !== 'Chino' && JSON.parse(localStorage.getItem('copyoffer')).language !== 'Francés' && JSON.parse(localStorage.getItem('copyoffer')).language !== 'Inglés' && JSON.parse(localStorage.getItem('copyoffer')).language !== 'Italiano' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).language} selected>{JSON.parse(localStorage.getItem('copyoffer')).language}</option> : ''}
+
             </select>
             <h5>Sector</h5>
             <select className='b-create-offer-form-select' {...register("sector")}>
@@ -70,58 +72,70 @@ const Form = () => {
               {JSON.parse(localStorage.getItem('copyoffer')).sector === 'Aeroespacial' ? <option value="Aeroespacial" selected>Aeroespacial</option> : <option value="Aeroespacial">Aeroespacial</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).sector === 'Hostelería' ? <option value="Hostelería" selected>Hostelería</option> : <option value="Hostelería">Hostelería</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).sector === 'Automovilístico' ? <option value="Automovilístico" selected>Automovilístico</option> : <option value="Automovilístico">Automovilístico</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).sector !== 'Tecnológico' && JSON.parse(localStorage.getItem('copyoffer')).sector !== 'Aeroespacial' && JSON.parse(localStorage.getItem('copyoffer')).sector !== 'Hostelería' && JSON.parse(localStorage.getItem('copyoffer')).sector !== 'Automovilístico' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).sector} selected>{JSON.parse(localStorage.getItem('copyoffer')).sector}</option> : ''}
+
             </select>
             <h5>Descripción de la oferta</h5>
             <textarea className='b-create-offer-form-textarea' {...register("description")} defaultValue={JSON.parse(localStorage.getItem('copyoffer')).description}></textarea>
             <h5>Compañia</h5>
             <select className='b-create-offer-form-select' {...register("company")}>
-              <option value="Telefónica">Telefónica</option>
-              <option value="NASA">NASA</option>
-              <option value="Grupo Larrumba">Grupo Larrumba</option>
-              <option value="Grupo Paragüas">Grupo Paragüas</option>
-              <option value="Midas">Midas</option>
+              {localStorage.getItem('company') === 'Telefónica' ? <option value="Telefónica" selected>Telefónica</option> : <option value="Telefónica">Telefónica</option>}
+              {localStorage.getItem('company') === 'NASA' ? <option value="NASA" selected>NASA</option> : <option value="NASA">NASA</option>}
+              {localStorage.getItem('company') === 'Grupo Larrumba' ? <option value="Grupo Larrumba" selected>Grupo Larrumba</option> : <option value="Grupo Larrumba">Grupo Larrumba</option>}
+              {localStorage.getItem('company') === 'Grupo Paragüas' ? <option value="Grupo Paragüas" selected>Grupo Paragüas</option> : <option value="Grupo Paragüas">Grupo Paragüas</option>}
+              {localStorage.getItem('company') === 'Midas' ? <option value="Midas" selected>Midas</option> : <option value="Midas">Midas</option>}
+              {localStorage.getItem('company') !== 'Telefónica' && localStorage.getItem('company') !== 'Nasa' && localStorage.getItem('company') !== 'Grupo Larrumba' && localStorage.getItem('company') !== 'Grupo Paragüas' && localStorage.getItem('company') !== 'Midas' ? <option value={localStorage.getItem('company')} selected>{localStorage.getItem('company')}</option> : ''}
+
             </select>
             <h5>Localización</h5>
+            <label>Ciudad</label>
             <select className='b-create-offer-form-select' {...register("location.city")}>
-              <option value="Ciudad">Ciudad</option>
-              <option value="Madrid">Madrid</option>
-              <option value="París">París</option>
-              <option value="New York">New York</option>
-              <option value="Sidney">Sidney</option>
+              {JSON.parse(localStorage.getItem('copyoffer')).location.city === 'Madrid' ? <option value="Madrid" select>Madrid</option> : <option value="Madrid">Madrid</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).location.city === 'París' ? <option value="París" select>París</option> : <option value="París">París</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).location.city === 'New York' ? <option value="New York" select>New York</option> : <option value="New York">New York</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).location.city === 'Sidney' ? <option value="Sidney" select>Sidney</option> : <option value="Sidney">Sidney</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).location.city !== 'Madrid' && JSON.parse(localStorage.getItem('copyoffer')).location.city !== 'Paris' && JSON.parse(localStorage.getItem('copyoffer')).location.city !== 'New York' && JSON.parse(localStorage.getItem('copyoffer')).location.city !== 'Sidney' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).location.city} selected>{JSON.parse(localStorage.getItem('copyoffer')).location.city}</option> : ''}
+
             </select>
+            <label>País</label>
             <select className='b-create-offer-form-select' {...register("location.country")}>
-              <option value="País">País</option>
-              <option value="España">España</option>
-              <option value="Francia">Francia</option>
-              <option value="Estados Unidos">Estados Unidos</option>
-              <option value="Australia">Australia</option>
+              {JSON.parse(localStorage.getItem('copyoffer')).location.country === 'España' ? <option value="España" select>España</option> : <option value="España">España</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).location.country === 'Francia' ? <option value="Francia" select>Francia</option> : <option value="Francia">Francia</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).location.country === 'Estados Unidos' ? <option value="Estados Unidos" select>Estados Unidos</option> : <option value="Estados Unidos">Estados Unidos</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).location.country === 'Australia' ? <option value="Australia" select>Australia</option> : <option value="Australia">Australia</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).location.country !== 'España' && JSON.parse(localStorage.getItem('copyoffer')).location.country !== 'Francia' && JSON.parse(localStorage.getItem('copyoffer')).location.country !== 'Estados Unidos' && JSON.parse(localStorage.getItem('copyoffer')).location.country !== 'Australia' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).location.country} selected>{JSON.parse(localStorage.getItem('copyoffer')).location.country}</option> : ''}
             </select>
             <h5>Requisitos de candidato</h5>
-            <textarea className='b-create-offer-form-textarea' {...register("conditions.requisites")}></textarea>
+            <textarea className='b-create-offer-form-textarea' {...register("conditions.requisites")} defaultValue={JSON.parse(localStorage.getItem('copyoffer')).conditions.requisites}></textarea>
             <h5>Condiciones</h5>
+            <label>Salario</label>
             <select className='b-create-offer-form-select' {...register("conditions.salary")}>
-              <option value="0">Salario</option>
-              <option value="18k - 25k">18k - 25k</option>
-              <option value="25k - 35k">25k - 35k</option>
-              <option value="35k - 45k">35k - 45k</option>
-              <option value="45k - 70k">45k - 70k</option>
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.salary === '18k - 25k' ? <option value="18k - 25k" select>18k - 25k</option> : <option value="18k - 25k" >18k - 25k</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.salary === '25k - 35k' ? <option value="25k - 35k" select>25k - 35k</option> : <option value="25k - 35k" >25k - 35k</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.salary === '35k - 45k' ? <option value="35k - 45k" select>35k - 45k</option> : <option value="35k - 45k" >35k - 45k</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.salary === '45k - 70k' ? <option value="45k - 70k" select>45k - 70k</option> : <option value="45k - 70k" >45k - 70k</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.salary !== '18k - 25k' && JSON.parse(localStorage.getItem('copyoffer')).conditions.salary !== 'Francia' && JSON.parse(localStorage.getItem('copyoffer')).conditions.salary !== 'Estados Unidos' && JSON.parse(localStorage.getItem('copyoffer')).conditions.salary !== 'Australia' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).conditions.salary} selected>{JSON.parse(localStorage.getItem('copyoffer')).conditions.salary}</option> : ''}
+
             </select>
+            <label>Tipo de Jornada</label>
             <select className='b-create-offer-form-select' {...register("conditions.shift")}>
-              <option value="0Tipo de Jornada">Tipo de Jornada</option>
-              <option value="Jornada Completa">Jornada Completa</option>
-              <option value="Media Jornada">Media Jornada</option>
+            {JSON.parse(localStorage.getItem('copyoffer')).conditions.shift === 'Jornada Completa' ? <option value="Jornada Completa" select>Jornada Completa</option> : <option value="Jornada Completa">Jornada Completa</option>}
+            {JSON.parse(localStorage.getItem('copyoffer')).conditions.shift === 'Media Jornada' ? <option value="Media Jornada" select>Media Jornada</option> : <option value="Media Jornada">Media Jornada</option>}
+            {JSON.parse(localStorage.getItem('copyoffer')).conditions.shift !== 'Jornada Completa' && JSON.parse(localStorage.getItem('copyoffer')).conditions.shift !== 'Jornada Completa' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).conditions.shift} selected>{JSON.parse(localStorage.getItem('copyoffer')).conditions.shift}</option> : ''}
             </select>
+            <label>Tipo de contrato</label>
             <select className='b-create-offer-form-select' {...register("conditions.contract")}>
-              <option value="Tipo de Contrato">Tipo de Contrato</option>
-              <option value="Contrato Indefinido">Contrato Indefinido</option>
-              <option value="Contrato Temporal">Contrato Temporal</option>
-              <option value="Contrato de Prácticas">Contrato de Prácticas</option>
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.contract === 'Contrato Indefinido' ? <option value="Contrato Indefinido" select>Jornada Completa</option> : <option value="Contrato Indefinido">Contrato Indefinido</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.contract === 'Contrato Temporal' ? <option value="Contrato Temporal" select>Jornada Completa</option> : <option value="Contrato Temporal">Contrato Temporal</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.contract === 'Contrato de Prácticas' ? <option value="Contrato de Prácticas" select>Jornada Completa</option> : <option value="Contrato de Prácticas">Contrato de Prácticas </option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.contract !== 'Contrato Indefinido' && JSON.parse(localStorage.getItem('copyoffer')).conditions.contract !== 'Contrato Temporal' && JSON.parse(localStorage.getItem('copyoffer')).conditions.contract !== 'Contrato de Prácticas' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).conditions.contract} selected>{JSON.parse(localStorage.getItem('copyoffer')).conditions.contract}</option> : ''}
             </select>
+            <label>Disponibilidad</label>
             <select className='b-create-offer-form-select' {...register("conditions.availability")}>
-              <option value="Disponibilidad">Disponibilidad</option>
-              <option value="Inmediata">Inmediata</option>
-              <option value="215 Días">15 Días</option>
-              <option value="1 Mes">1 Mes</option>
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.availability === 'Inmediata' ? <option value="Inmediata" select>Inmediata</option> : <option value="Inmediata">Inmediata</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.availability === '15 Días' ? <option value="15 Días" select>15 Días</option> : <option value="15 Días">15 Días</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.availability === '1 Mes' ? <option value="1 Mes" select>1 Mes</option> : <option value="1 Mes">1 Mes</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).conditions.availability !== 'Inmediata' && JSON.parse(localStorage.getItem('copyoffer')).conditions.availability !== '15 Días' && JSON.parse(localStorage.getItem('copyoffer')).conditions.availability !== '1 Mes' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).conditions.availability} selected>{JSON.parse(localStorage.getItem('copyoffer')).conditions.availability}</option> : ''}
             </select>
             <Button className="b-form-button b-form-button--sec" text="Continuar"></Button>
         </form>

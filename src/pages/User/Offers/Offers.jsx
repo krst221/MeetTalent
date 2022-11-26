@@ -23,6 +23,7 @@ const Offers = () => {
       <div className='b-offers-header'>
         <BackButton src="../../../assets/back.svg"></BackButton>
         <h5 className='b-offer-title'>Ofertas</h5>
+        <span className='b-p'></span>
       </div>
       {offers.length < 1 ? <Loading /> : <GalleryOffers offers={offers} />}
       <div className='b-position-nav'>

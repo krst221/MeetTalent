@@ -14,6 +14,7 @@ const Index = () => {
     <div className='b-user-header'>
         <BackButton src="../../../assets/back.svg"></BackButton>
         <h3 className='b-user-title'>Perfil</h3>
+        <span className='b-p'></span>
       </div>
       <div className='b-user-info'> 
         <ImageUser src={JSON.parse(localStorage.getItem("user")).picture}/>

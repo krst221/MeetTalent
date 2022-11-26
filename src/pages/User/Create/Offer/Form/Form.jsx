@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Form.scss'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -17,25 +17,31 @@ const Form = () => {
     const {register, handleSubmit} = useForm()
     const {user} = useContext(UserContext);
     const {isLoading} = useSelector((state) => state.auth)
+    const [page, setPage] = useState(1);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getCompany(localStorage.getItem('copyoffer')));
-    }, [dispatch])
+      if(page === 1) dispatch(getCompany(localStorage.getItem('copyoffer')));
+    }, [dispatch, page])
 
     const enviar = (formdata) => {
-      console.log(formdata);
-      formdata.company = user._id;
-      dispatch(registerOffer(formdata, navigate))
-      localStorage.setItem("copyoffer", JSON.stringify(formdata))
+      if(page === 1){
+        localStorage.setItem("copyoffer", JSON.stringify(formdata));
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        setPage(2);
+      }
+      else {
+        formdata.company = user._id;
+        dispatch(registerOffer(formdata, navigate));
+      }
     }
 
   return (
     <div className='b-create-offer-form-container'>
       <div className='b-offer-header'>
         <BackButton src="../../../assets/back.svg"></BackButton>
-        <h4 className='b-offer-title'>Descripción de la oferta</h4>
+        <h4 className='b-offer-title'>{page === 1 ? 'Descripción de la oferta' : 'Confirmación'}</h4>
         <Cross src="../../../assets/cross.svg"></Cross>
       </div>
         {isLoading === true ? <Loading></Loading> :
@@ -131,13 +137,13 @@ const Form = () => {
               {JSON.parse(localStorage.getItem('copyoffer')).conditions.contract !== 'Contrato Indefinido' && JSON.parse(localStorage.getItem('copyoffer')).conditions.contract !== 'Contrato Temporal' && JSON.parse(localStorage.getItem('copyoffer')).conditions.contract !== 'Contrato de Prácticas' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).conditions.contract} selected>{JSON.parse(localStorage.getItem('copyoffer')).conditions.contract}</option> : ''}
             </select>
             <label>Disponibilidad</label>
-            <select className='b-create-offer-form-select' {...register("conditions.availability")}>
+            <select className='b-create-offer-form-select' {...register("conditions.availability")} defaultValue={JSON.parse(localStorage.getItem('copyoffer')).conditions.availability}>
               {JSON.parse(localStorage.getItem('copyoffer')).conditions.availability === 'Inmediata' ? <option value="Inmediata" select>Inmediata</option> : <option value="Inmediata">Inmediata</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).conditions.availability === '15 Días' ? <option value="15 Días" select>15 Días</option> : <option value="15 Días">15 Días</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).conditions.availability === '1 Mes' ? <option value="1 Mes" select>1 Mes</option> : <option value="1 Mes">1 Mes</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).conditions.availability !== 'Inmediata' && JSON.parse(localStorage.getItem('copyoffer')).conditions.availability !== '15 Días' && JSON.parse(localStorage.getItem('copyoffer')).conditions.availability !== '1 Mes' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).conditions.availability} selected>{JSON.parse(localStorage.getItem('copyoffer')).conditions.availability}</option> : ''}
             </select>
-            <Button className="b-form-button b-form-button--sec" text="Continuar"></Button>
+            <Button className="b-form-button b-form-button--sec" text={page === 1 ? 'Continuar' : 'Confirmar'}></Button>
         </form>
         }
     </div>

@@ -20,6 +20,7 @@ const Offer = () => {
     if(offers.length >= 4) setLength(4);
     else setLength(offers.length);
     localStorage.setItem('copyoffer', null);
+    localStorage.setItem('company', 'Telefónica');
   }, [offers.length])
 
   const setOffer = (offer) => {

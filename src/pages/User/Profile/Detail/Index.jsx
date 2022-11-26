@@ -15,7 +15,6 @@ import { UserContext } from '../../../../shared/contexts/UserContext'
 import './Index.scss'
 import BackButton from '../../../../components/BackButton/BackButton'
 import Heart from '../../../../components/Heart/Heart'
-import NavBar from '../../../../components/NavBar/NavBar'
 
 const Index = () => {
 
@@ -68,9 +67,13 @@ const Index = () => {
   return (
     <div className='b-profile'>
       <div className='b-profile-header'>
-        <BackButton src="../../../assets/back.svg"></BackButton>
+        <div className='white'>
+          <BackButton src="../../../assets/back.svg"></BackButton>
+        </div>
         <h3 className='b-profile-title'>Candidatos</h3>
-        <Heart src="../../../assets/heart.svg"></Heart>
+        <div className='white'>
+          <Heart src="../../../assets/heart.svg"></Heart>
+        </div>
       </div>
       {user.length < 1 ? <Loading /> : 
       <div className='b-profile--detail'>
@@ -193,9 +196,6 @@ const Index = () => {
             </div>
         </div>
       </div>}
-      <div className='b-position-nav'>
-        <NavBar></NavBar>
-      </div>
     </div>
   )
 }

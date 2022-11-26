@@ -39,7 +39,10 @@ export const loginUser = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('user', JSON.stringify(result.data.user))
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
         console.log('logeao');
-        navigate('/user/profile/detail/')
+        if(localStorage.getItem('user')) {
+            navigate('/user/profile/');
+            navigate(0);
+        }
     } catch (error) {
         dispatch({type: "LOGIN_USER_ERROR",  payload : error.message})
     }
@@ -101,11 +104,13 @@ export const verifyMail = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "VERIFY_MAIL"})
     try {
         await API.post("user/mail", formdata)
-        localStorage.setItem('verify', true)
+        localStorage.setItem('verify', 'true')
         localStorage.setItem('email', formdata.email)
         dispatch({type: "VERIFY_MAIL_OK"})
-        const verify = localStorage.getItem('verify');
-        if(verify) navigate('/login/recover/')
+        if(localStorage.getItem('verify') === 'true'){
+            navigate('/login/recover');
+            navigate(0);
+        }
     } catch (error) {
         dispatch({type: "VERIFY_MAIL_ERROR"})
     }

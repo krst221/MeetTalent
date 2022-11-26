@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { getOffers } from '../../../../redux/auth/auth.actions'
 import BackButton from '../../../../components/BackButton/BackButton'
 import Button from '../../../../components/Button/Button'
 import Cross from '../../../../components/Cross/Cross'
@@ -12,20 +10,17 @@ import { useNavigate } from 'react-router-dom'
 
 const Offer = () => {
   const {register, handleSubmit, formState : {errors}, reset} = useForm()
-  const dispatch = useDispatch();
   const [offers, setOffers] = useState([]);
   const [copyOffer, setCopyOffer] = useState([]);
   const [length, setLength] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getOffers());
     setOffers(JSON.parse(localStorage.getItem('offers')));
     if(offers.length >= 4) setLength(4);
     else setLength(offers.length);
     localStorage.setItem('copyoffer', null);
-    reset();
-  }, [dispatch, offers.length, reset])
+  }, [offers.length])
 
   const setOffer = (offer) => {
     if(offer === 'e') {
@@ -127,7 +122,7 @@ const Offer = () => {
       </div>
       <div className='b-offer-duplicate'>
         <h5 className='b-offer-title'>Duplicar la oferta</h5>
-        {!offers || offers.length < 1 ? <Loading /> : 
+        {offers.length < 1 ? <Loading /> : 
           [...offers].reverse().slice(0,4).map((offer, index) => <button key={index} className={"b-offer-button"} onClick={() => setOffer(offer)}>{offer.title}</button>)}
         {length === 0 ? <>
             <button className={"b-offer-button"} onClick={() => setOffer('a')}>{"Administrativo"}</button>

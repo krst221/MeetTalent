@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Form.scss'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -42,37 +42,37 @@ const Form = () => {
         <form onSubmit={(handleSubmit(enviar))}>
             <h5>Título de la oferta</h5>
             <select className='b-create-offer-form-select'{...register("title")} defaultValue={JSON.parse(localStorage.getItem('copyoffer')).title}>
-              {copyOffer.title === 'Diseñador Web' ? <option value="Diseñador Web" selected>Diseñador Web</option> : <option value="Diseñador Web">Diseñador Web</option>}
-              {copyOffer.title === 'Desarrollador Fullstack' ? <option value="Desarrollador Fullstack" selected>Desarrollador Fullstack</option> : <option value="Desarrollador Fullstack">Desarrollador Fullstack</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).title === 'Diseñador Web' ? <option value="Diseñador Web" selected>Diseñador Web</option> : <option value="Diseñador Web">Diseñador Web</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).title === 'Desarrollador Fullstack' ? <option value="Desarrollador Fullstack" selected>Desarrollador Fullstack</option> : <option value="Desarrollador Fullstack">Desarrollador Fullstack</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).title === 'Astronauta' ? <option value="Astronauta" selected>Astronauta</option> : <option value="Astronauta">Astronauta</option>}
-              {copyOffer.title === 'Director de Restaurante' ? <option value="Director de Restaurante" selected>Director de Restaurante</option> : <option value="Director de Restaurante">Director de Restaurante</option>}
-              {copyOffer.title !== 'Diseñador Web' && copyOffer.title !== 'Desarrollador Fullstack' && copyOffer.title !== 'Astronauta' && copyOffer.title !== 'Director de Restaurante' ? <option value={copyOffer.title} selected>{copyOffer.title}</option> : ''}
+              {JSON.parse(localStorage.getItem('copyoffer')).title === 'Director de Restaurante' ? <option value="Director de Restaurante" selected>Director de Restaurante</option> : <option value="Director de Restaurante">Director de Restaurante</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).title !== 'Diseñador Web' && JSON.parse(localStorage.getItem('copyoffer')).title !== 'Desarrollador Fullstack' && JSON.parse(localStorage.getItem('copyoffer')).title !== 'Astronauta' && JSON.parse(localStorage.getItem('copyoffer')).title !== 'Director de Restaurante' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).title} selected>{JSON.parse(localStorage.getItem('copyoffer')).title}</option> : ''}
             </select>
             <h5>Número de vacantes</h5>
             <select className='b-create-offer-form-select' {...register("vacancies")}>
-              {copyOffer.vacancies === 0 ? <option value="0" selected>0</option> : <option value="0">0</option>}
-              {copyOffer.vacancies === 1 ? <option value="1" selected>1</option> : <option value="1">1</option>}
-              {copyOffer.vacancies === 2 ? <option value="2" selected>2</option> : <option value="2">2</option>}
-              {copyOffer.vacancies === 3 ? <option value="3" selected>3</option> : <option value="3">3</option>}
-              {copyOffer.vacancies >= 4 ? <option value="4" selected>4+</option> : <option value="4">4+</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).vacancies === 0 ? <option value="0" selected>0</option> : <option value="0">0</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).vacancies === 1 ? <option value="1" selected>1</option> : <option value="1">1</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).vacancies === 2 ? <option value="2" selected>2</option> : <option value="2">2</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).vacancies === 3 ? <option value="3" selected>3</option> : <option value="3">3</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).vacancies >= 4 ? <option value="4" selected>4+</option> : <option value="4">4+</option>}
             </select>
             <h5>Idioma</h5>
             <select className='b-create-offer-form-select' {...register("language")}>
-              {copyOffer.language === 'Español' ? <option value="Español" selected>Español</option> : <option value="Español">Español</option>}
-              {copyOffer.language === 'Inglés' ? <option value="Inglés" selected>Inglés</option> : <option value="Inglés">Inglés</option>}
-              {copyOffer.language === 'Italiano' ? <option value="Italiano" selected>Italiano</option> : <option value="Italiano">Italiano</option>}
-              {copyOffer.language === 'Chino' ? <option value="Chino" selected>Chino</option> : <option value="Chino">Chino</option>}
-              {copyOffer.language === 'Francés' ? <option value="Francés" selected>Francés</option> : <option value="Francés">Francés</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).language === 'Español' ? <option value="Español" selected>Español</option> : <option value="Español">Español</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).language === 'Inglés' ? <option value="Inglés" selected>Inglés</option> : <option value="Inglés">Inglés</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).language === 'Italiano' ? <option value="Italiano" selected>Italiano</option> : <option value="Italiano">Italiano</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).language === 'Chino' ? <option value="Chino" selected>Chino</option> : <option value="Chino">Chino</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).language === 'Francés' ? <option value="Francés" selected>Francés</option> : <option value="Francés">Francés</option>}
             </select>
             <h5>Sector</h5>
             <select className='b-create-offer-form-select' {...register("sector")}>
-              {copyOffer.sector === 'Tecnológico' ? <option value="Tecnológico" selected>Tecnológico</option> : <option value="Tecnológico">Tecnológico</option>}
-              {copyOffer.sector === 'Aeroespacial' ? <option value="Aeroespacial" selected>Aeroespacial</option> : <option value="Aeroespacial">Aeroespacial</option>}
-              {copyOffer.sector === 'Hostelería' ? <option value="Hostelería" selected>Hostelería</option> : <option value="Hostelería">Hostelería</option>}
-              {copyOffer.sector === 'Automovilístico' ? <option value="Automovilístico" selected>Automovilístico</option> : <option value="Automovilístico">Automovilístico</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).sector === 'Tecnológico' ? <option value="Tecnológico" selected>Tecnológico</option> : <option value="Tecnológico">Tecnológico</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).sector === 'Aeroespacial' ? <option value="Aeroespacial" selected>Aeroespacial</option> : <option value="Aeroespacial">Aeroespacial</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).sector === 'Hostelería' ? <option value="Hostelería" selected>Hostelería</option> : <option value="Hostelería">Hostelería</option>}
+              {JSON.parse(localStorage.getItem('copyoffer')).sector === 'Automovilístico' ? <option value="Automovilístico" selected>Automovilístico</option> : <option value="Automovilístico">Automovilístico</option>}
             </select>
             <h5>Descripción de la oferta</h5>
-            <textarea className='b-create-offer-form-textarea' {...register("description")} defaultValue={copyOffer.description}></textarea>
+            <textarea className='b-create-offer-form-textarea' {...register("description")} defaultValue={JSON.parse(localStorage.getItem('copyoffer')).description}></textarea>
             <h5>Compañia</h5>
             <select className='b-create-offer-form-select' {...register("company")}>
               <option value="Telefónica">Telefónica</option>

@@ -130,7 +130,7 @@ export const registerOffer = (formdata, navigate) => async(dispatch) => {
     try {    
         await API.post("offer/add", formdata)
         dispatch({type: "REGISTER_OFFER_OK"})
-        navigate('/login')
+        navigate('/user/create');
     } catch (error) {  
         dispatch({type: "REGISTER_OFFER_ERROR"})
     }

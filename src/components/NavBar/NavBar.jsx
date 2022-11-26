@@ -13,7 +13,7 @@ const NavBar = () => {
         <small className='b-span-icon'>Home</small>
       </div>
       <div className='b-complete-icon'>
-        <img  className='b-icon' src='.././assets/users-solid.svg' alt="Candidatos" onClick={() => navigate("/user/create/test")}></img>
+        <img  className='b-icon' src='.././assets/users-solid.svg' alt="Candidatos" onClick={() => navigate("/user/candidates")}></img>
         <small className='b-span-icon'>Candidatos</small>
       </div>
       <div className='b-complete-icon'>

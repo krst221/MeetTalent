@@ -3,7 +3,10 @@ import './Candidates.scss'
 
 const Candidates = () => {
   return (
-    <div>Candidates</div>
+    <div className='b-candidates-container'>
+
+
+    </div>
   )
 }
 

@@ -102,7 +102,7 @@ export const verifyMail = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('email', formdata.email)
         dispatch({type: "VERIFY_MAIL_OK"})
         const verify = localStorage.getItem('verify');
-        if(verify === 'true') navigate('/login/recover')
+        if(verify) navigate('/login/recover/')
     } catch (error) {
         dispatch({type: "VERIFY_MAIL_ERROR"})
     }

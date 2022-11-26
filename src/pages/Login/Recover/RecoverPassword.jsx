@@ -21,7 +21,7 @@ export const RecoverPassword = () => {
   }
 
   return (
-    <div className='b-login-container'>
+    <div className='b-verify-container'>
       <div className='b-login-logo'>
         <Logo></Logo>
       </div>

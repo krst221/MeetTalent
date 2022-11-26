@@ -127,7 +127,7 @@ const Offer = () => {
       </div>
       <div className='b-offer-duplicate'>
         <h5 className='b-offer-title'>Duplicar la oferta</h5>
-        {offers.length < 1 ? <Loading /> : 
+        {!offers || offers.length < 1 ? <Loading /> : 
           [...offers].reverse().slice(0,4).map((offer, index) => <button key={index} className={"b-offer-button"} onClick={() => setOffer(offer)}>{offer.title}</button>)}
         {length === 0 ? <>
             <button className={"b-offer-button"} onClick={() => setOffer('a')}>{"Administrativo"}</button>

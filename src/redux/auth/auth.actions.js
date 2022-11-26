@@ -36,7 +36,7 @@ export const loginUser = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('user', JSON.stringify(result.data.user))
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
         console.log('logeao');
-        navigate('/user/profile/')
+        navigate('/user/profile/detail/')
     } catch (error) {
         dispatch({type: "LOGIN_USER_ERROR",  payload : error.message})
     }
@@ -102,7 +102,7 @@ export const verifyMail = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('email', formdata.email)
         dispatch({type: "VERIFY_MAIL_OK"})
         const verify = localStorage.getItem('verify');
-        if(verify === 'true') navigate('/login/recover')
+        if(verify) navigate('/login/recover/')
     } catch (error) {
         dispatch({type: "VERIFY_MAIL_ERROR"})
     }

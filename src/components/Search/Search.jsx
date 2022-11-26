@@ -1,9 +1,15 @@
 import React from 'react'
 import './Search.scss'
 
-const Search = () => {
+const Search = ({setSearch}) => {
+  
+  const handleChange = (event) => {
+    const {value} = event.target;
+    setSearch(value)
+  } 
+
   return (
-    <input type="text" className='b-component-search' placeholder='Buscar'>
+    <input onChange={handleChange} type="text" className='b-component-search' placeholder='Buscar'>
 
     </input>
   )

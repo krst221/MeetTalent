@@ -1,6 +1,5 @@
 .b-verify-container {
     display: flex;
-    justify-content: center;
     align-items: center;
     min-height: 100vh;
     width: 100%;
@@ -11,6 +10,14 @@
 
 .b-login-logo {
     margin-bottom: 40px;
+}
+
+.b-profile-header--v {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    margin-bottom: 10vh;
 }
 
 form {

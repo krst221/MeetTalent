@@ -1,5 +1,6 @@
 .b-candidate {
     &-container {
+        cursor: pointer;
         width: 250px;
         height: 200px;
         background-color: white;
@@ -9,7 +10,7 @@
         align-items: center;
         flex-direction: column;
         position: relative;
-        margin: 70px 0;
+        margin: 70px 10px;
     }
     &-text {
         color:rgb(11, 79, 110);
@@ -30,6 +31,8 @@
         background-color: red;
         transform: translate(0, -130%);
         position: absolute;
+        object-fit: cover;
+        object-position: top;
     }
     &-small {
         display: flex;

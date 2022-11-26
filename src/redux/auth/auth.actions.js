@@ -27,6 +27,9 @@ export const MODIFY_ARRAY_VALUE_ERROR = "MODIFY_ARRAY_VALUE_ERROR";
 export const GET_OFFERS = "GET_OFFERS";
 export const GET_OFFERS_OK = "GET_OFFERS_OK";
 export const GET_OFFERS_ERROR = "GET_OFFERS_ERROR";
+export const GET_COMPANY = "GET_COMPANY";
+export const GET_COMPANY_OK = "GET_COMPANY_OK";
+export const GET_COMPANY_ERROR = "GET_COMPANY_ERROR";
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "LOGIN_USER"})
@@ -141,5 +144,16 @@ export const getOffers = () => async(dispatch) => {
         dispatch({type: "GET_OFFERS_OK"})
     } catch (error) {  
         dispatch({type: "GET_OFFERS_ERROR"})
+    }
+}
+
+export const getCompany = (_id) => async(dispatch) => {
+    dispatch({type: "GET_COMPANY"})
+    try {  
+        const res = await API.get("company/get", _id)
+        localStorage.setItem('company', res.data);
+        dispatch({type: "GET_COMPANY_OK"})
+    } catch (error) {  
+        dispatch({type: "GET_COMPANY_ERROR"})
     }
 }

@@ -2,7 +2,9 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import BackButton from '../../../components/BackButton/BackButton'
 import Button from '../../../components/Button/Button'
+import Cross from '../../../components/Cross/Cross'
 import Loading from '../../../components/Loading/Loading'
 import Logo from '../../../components/Logo/Logo'
 import { verifyMail } from '../../../redux/auth/auth.actions'
@@ -21,6 +23,9 @@ export const VerifyMail= () => {
 
   return (
     <div className='b-verify-container'>
+      <div className='b-cross'>
+        <Cross src="../../../assets/cross.svg"></Cross>
+      </div>  
       <div className='b-login-logo'>
         <Logo></Logo>
       </div>

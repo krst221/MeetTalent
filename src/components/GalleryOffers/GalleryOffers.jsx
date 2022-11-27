@@ -4,7 +4,7 @@ import Offer from '../Offer/Offer';
 import Search from '../Search/Search';
 import './GalleryOffers.scss'
 
-const GalleryOffers = ({offers}) => {
+const GalleryOffers = ({offers, own}) => {
   
     const [openOffers, setOpenOffers] = useState([]);
     const [closeOffers, setCloseOffers] = useState([]);
@@ -48,8 +48,8 @@ const GalleryOffers = ({offers}) => {
           <h5 className={`b-offers-links ${showOpenOffers ? "" : "dark"}`} onClick={() => setShowOpenOffers(false)}>Cerradas</h5>
         </div>
         <div className='b-offers-boxes-container'>
-         {showOpenOffers ? openOffers.map((offer) => <Offer offer={offer}></Offer>) :
-          closeOffers.map((offer) => <Offer offer={offer}></Offer>)}
+         {showOpenOffers ? [...openOffers].reverse().map((offer) => <Offer offer={offer} open={true} own={own}></Offer>) :
+          [...closeOffers].reverse().map((offer) => <Offer offer={offer} open={false}  own={own}></Offer>)}
         </div>
     </div></>
   )

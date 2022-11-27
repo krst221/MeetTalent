@@ -20,6 +20,10 @@ const Login = () => {
     localStorage.setItem('token', null);
     localStorage.setItem('verify', null);
     localStorage.setItem('email', null);
+    localStorage.setItem('isCompany', null);
+    localStorage.setItem('company', null);
+    localStorage.setItem('offers', null);
+    localStorage.setItem('users', null);
   }, [])
   
 

@@ -14,8 +14,6 @@ import { deleteArrayElement } from '../../../../redux/auth/auth.actions'
 import { UserContext } from '../../../../shared/contexts/UserContext'
 import './Index.scss'
 import BackButton from '../../../../components/BackButton/BackButton'
-import Heart from '../../../../components/Heart/Heart'
-import axios from "axios"
 
 const Index = () => {
 
@@ -86,10 +84,9 @@ const Index = () => {
             </div>
             <h3 className='b-profile-title'>Mi perfil</h3>
             <div className='white'>
-              <Heart src="../../../assets/heart.svg"></Heart>
             </div>
           </div> 
-          <div className='b-profile--detail'>
+          <div className={`b-profile--detail ${localStorage.getItem('isCompany')==='true' ? 'border-all' : 'border-top'}`} >
           <img src={pen} className='b-edit--pen' alt='' onClick={() => setEditMode(!editMode)}/>    
             <div className='b-profile--detail--container'>    
               <div className='b-profile--image'><ImageUser src={user.picture} /></div>
@@ -113,7 +110,7 @@ const Index = () => {
                   </form>
                 </div> : ''}
             </div>
-            <div className='b-profile--detail--container'>
+            {localStorage.getItem('isCompany') === 'false' ? <div className='b-profile--detail--container'>
               <h3>{user.job}</h3>
               {editMode && edit !== 3 ? <div className='b-edit' onClick={() => setEdit(3)}>Editar</div> : ''}
               {edit === 3 ? 
@@ -123,15 +120,15 @@ const Index = () => {
                     <button type='submit'>Aceptar cambios</button>
                   </form>
                 </div> : ''}
-            </div>
-            <div className='b-container--sn'>
+            </div> : ''}
+            {localStorage.getItem('isCompany') === 'false' ? <div className='b-container--sn'>
               <img src={tw} alt='' className='b-icon--sn' />
               <img src={ig} alt='' className='b-icon--sn' />
               <img src={fb} alt='' className='b-icon--sn' />
-            </div>
+            </div>: ''}
             <div className='b-profile--detail--list'>
               <h4>Datos personales</h4>
-              <div className='b-profile--detail--container'>
+              {localStorage.getItem('isCompany') === 'false' ? <div className='b-profile--detail--container'>
                 {user.age > 0 ? <p>📅 {user.age} años</p> : <p>📅 Edad indefinida</p>}
                 {editMode && edit !== 4 ? <div className='b-edit' onClick={() => setEdit(4)}>Editar</div> : ''}
                 {edit === 4 ? 
@@ -141,7 +138,7 @@ const Index = () => {
                       <button type='submit'>Aceptar cambios</button>
                     </form>
                   </div> : ''}
-              </div>
+              </div> : ''}
               <div className='b-profile--detail--container'>
                 {user.location ? <p>🌆 {user.location.city}{user.location.detail ? <>, {user.location.detail}</> : '' }{user.location.zip ? <>, {user.location.zip}</> : '' }</p> : ''}
                 {editMode && edit !== 5 ? <div className='b-edit' onClick={() => setEdit(5)}>Editar</div> : ''}
@@ -178,6 +175,7 @@ const Index = () => {
                   </div> : ''}
               </div>
             </div>
+            {localStorage.getItem('isCompany') === 'false' ? <>
             <div className='b-profile--vert'>
               <h4>Palabras clave del perfil</h4>
               {editMode && edit !== 8 ? <div className='b-edit' onClick={() => setEdit(8)}>Editar</div> : ''}
@@ -208,6 +206,7 @@ const Index = () => {
                   {user.studies && user.studies.map((study, index) => <div className='b-profile--study' key={index} onClick={() => deleteStudy(study)}><h4>{study.type}</h4><h5>{study.degree}</h5><p>{study.location}</p></div>)}
                 </div>
             </div>
+            </> : ''}
           </div>
         </div>
       </>}

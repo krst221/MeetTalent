@@ -8,6 +8,12 @@ export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
 export const GET_USERS = "GET_USERS";
 export const GET_USERS_OK = "GET_USERS_OK";
 export const GET_USERS_ERROR = "GET_USERS_ERROR";
+export const GET_USER = "GET_USER";
+export const GET_USER_OK = "GET_USER_OK";
+export const GET_USER_ERROR = "GET_USER_ERROR";
+export const GET_SENDER = "GET_SENDER";
+export const GET_SENDER_OK = "GET_SENDER_OK";
+export const GET_SENDER_ERROR = "GET_SENDER_ERROR";
 export const GET_USER_ID = "GET_USER_ID";
 export const GET_USER_ID_OK = "GET_USER_ID_OK";
 export const GET_USER_ID_ERROR = "GET_USER_ID_ERROR";
@@ -88,6 +94,17 @@ export const getLocalUser = (id) => async(dispatch) => {
         localStorage.setItem('user', JSON.stringify(res.data));
     } catch (error) {  
         dispatch({type: "GET_USER_ERROR"})
+    }
+}
+
+export const getSender = (id) => async(dispatch) => {
+    dispatch({type: "GET_SENDER"})
+    try {    
+        const res = await API.post("user/getUser", {'id': id})
+        dispatch({type: "GET_SENDER_OK"})
+        localStorage.setItem('sender', JSON.stringify(res.data));
+    } catch (error) {  
+        dispatch({type: "GET_SENDER_ERROR"})
     }
 }
 

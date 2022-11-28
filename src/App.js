@@ -6,10 +6,8 @@ import VerifyMail from './pages/Login/Recover/VerifyMail';
 import RecoverPassword from './pages/Login/Recover/RecoverPassword';
 import Chat from './pages/User/Chat/Chat';
 import Profile from './pages/User/Profile/Index';
-import Config from './pages/User/Profile/Config/Config';
 import Detail from './pages/User/Profile/Detail/Index';
 import Map from './pages/User/Profile/Detail/Map/Map';
-import Help from './pages/User/Profile/Help/Help';
 import Sync from './pages/Register/Sync/Sync';
 import Candidates from './pages/User/Candidates/Candidates';
 import Create from './pages/User/Create/Create';
@@ -35,6 +33,7 @@ import { useState } from 'react';
 import CandidateProfile from './pages/User/Candidates/Profile/CandidateProfile';
 import Denied from './pages/User/Profile/Denied/Denied';
 import UserOffers from './pages/User/Profile/Offers/Offers';
+import Messages from './pages/User/Profile/Messages/Messages';
 
 
 function App() {
@@ -59,11 +58,10 @@ function App() {
             <Route path="/login/recover" element={verify==='true' ? <RecoverPassword></RecoverPassword> : <VerifyMail/>}></Route>
             <Route path="/user" element={user ? <Profile></Profile> : <Login></Login>}></Route>
             <Route path="/user/chat" element={user ? <Chat></Chat> : <Login></Login>}></Route>
-            <Route path="/user/profile/offers" element={user ? <UserOffers></UserOffers> : <Login></Login>}></Route>
-            <Route path="/user/profile/config" element={user ? <Config></Config> : <Login></Login>}></Route>
             <Route path="/user/profile/" element={user ? <Detail></Detail> : <Login></Login>}></Route>
+            <Route path="/user/profile/offers" element={user ? <UserOffers></UserOffers> : <Login></Login>}></Route>
+            <Route path="/user/profile/messages" element={user ? <Messages></Messages> : <Login></Login>}></Route>
             <Route path="/user/profile/map" element={user ? <Map></Map> : <Login></Login>}></Route>
-            <Route path="/user/profile/help" element={user ? <Help></Help> : <Login></Login>}></Route>
             <Route path="/user/candidates" element={user ? <Candidates></Candidates> : <Login></Login>}></Route>
             <Route path="/user/candidates/:id" element={user ? <CandidateProfile></CandidateProfile> : <Login></Login>}></Route>
             <Route path="/user/create" element={isCompany === 'true' ? <Create></Create> : <Denied></Denied>}></Route>

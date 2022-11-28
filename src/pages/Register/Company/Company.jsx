@@ -24,7 +24,7 @@ const Company = () => {
 
   return (
     <>
-      {isLoading === true ? <Loading></Loading> :
+      {isLoading ? <Loading></Loading> :
       <>
         <div className='b-regcompany-container'>
           <div className='b-user-header'>
@@ -49,6 +49,15 @@ const Company = () => {
               <div className='b-errors-container'>
               {errors.ID && <>
               {errors.ID.type === "required" && <p className='b-login-error--sec'>{errors.ID.message}</p>}
+              </>}
+              </div>
+              <label className='b-reguser-label'>Localización</label>
+              <input className='b-reguser-input' type="text" placeholder='Localización' {...register("location.city", {
+              required : "La localización no puede estar vacía"
+              })}/>
+              <div className='b-errors-container'>
+              {errors.location && <>
+              {errors.location.type === "required" && <p className='b-login-error--sec'>{errors.location.message}</p>}
               </>}
               </div>
               <label className='b-regcompany-label'>Email</label>

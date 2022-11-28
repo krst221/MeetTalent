@@ -37,10 +37,10 @@ const Index = () => {
           <h5 className='b-user-info-name--sec'>Mis ofertas</h5>
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
         </div></NavLink> : ''}
-        <div className='b-user-info-links--box'>
-          <h5 className='b-user-info-name--sec'>Suscripción y facturación</h5>
+        <NavLink to={"/user/profile/messages"}><div className='b-user-info-links--box'>
+          <h5 className='b-user-info-name--sec'>Mensajes</h5>
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
-        </div>
+        </div></NavLink>
         <div className='b-user-info-links--box'>
           <h5 className='b-user-info-name--sec'>Configuración</h5>
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>

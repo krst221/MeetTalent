@@ -16,7 +16,7 @@ const Message = ({message}) => {
   
   return (
     <div className='b-message'>
-      <img src={JSON.parse(localStorage.getItem('sender')).picture} alt='' /><h3>{message.text}</h3>
+      <img src={localStorage.getItem('sender') && JSON.parse(localStorage.getItem('sender')).picture} alt='' /><h3>{message.text}</h3>
     </div>
   )
 }

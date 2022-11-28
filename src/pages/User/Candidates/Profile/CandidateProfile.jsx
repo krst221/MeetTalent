@@ -9,7 +9,6 @@ import KeywordTag from '../../../../components/KeywordTag/KeywordTag'
 import Loading from '../../../../components/Loading/Loading'
 import { getUserById} from '../../../../redux/auth/auth.actions'
 import BackButton from '../../../../components/BackButton/BackButton'
-import Heart from '../../../../components/Heart/Heart'
 
 const CandidateProfile = () => {
 
@@ -20,8 +19,6 @@ const CandidateProfile = () => {
   useEffect(() => {
     dispatch(getUserById(id, navigate));
   }, [dispatch, navigate, id])
-  
-  console.log(localStorage.getItem('userid'));
 
   return (
     <>
@@ -34,7 +31,6 @@ const CandidateProfile = () => {
             </div>
             <h3 className='b-profile-title'>Candidatos</h3>
             <div className='white'>
-              <Heart src="../../../assets/heart.svg"></Heart>
             </div>
           </div> 
           <div className='b-profile--detail'>

@@ -12,7 +12,7 @@ const Offer = ({offer, open, own}) => {
 
   const close = () => {
     if (open) {
-      dispatch(closeOffer({oId: offer._id}, navigate));
+      dispatch(closeOffer({oId: offer._id, insc: offer.inscribed}, navigate));
     }
   }
 

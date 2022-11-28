@@ -13,6 +13,7 @@ import { modifyUserArray } from '../../../../redux/auth/auth.actions'
 import { deleteArrayElement } from '../../../../redux/auth/auth.actions'
 import { UserContext } from '../../../../shared/contexts/UserContext'
 import './Index.scss'
+import axios from 'axios';
 import BackButton from '../../../../components/BackButton/BackButton'
 
 const Index = () => {

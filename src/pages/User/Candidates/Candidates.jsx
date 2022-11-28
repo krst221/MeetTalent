@@ -10,9 +10,9 @@ const Candidates = () => {
 
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
-  const [search, setSearch] = useState("");
   const [usersFiltered, setUsersFiltered] = useState([]);
-  const [filter, setFilter] = useState("location")
+  const [filter, setFilter] = useState("location");
+  const [showName, setShowName] = useState("name")
 
   useEffect(() => {
     setUsers(JSON.parse(localStorage.getItem('users')))
@@ -22,8 +22,9 @@ const Candidates = () => {
 
   const searchUsers = (text, filter) => {
     let filtered = [];
-    if(filter === "name") filtered = users.filter((user) => user.name.toLowerCase().includes(text.toLowerCase()));
-    if(filter === "location") filtered = users.filter((user) => user.location.city.toLowerCase().includes(text.toLowerCase()));
+    if(showName === "name") filtered = users.filter((user) => user.name.toLowerCase().includes(text.toLowerCase()));
+    else if (showName === "location") filtered = users.filter((user) => user.location.city.toLowerCase().includes(text.toLowerCase()));
+    else if (showName === "job") filtered = users.filter((user) => user.job.toLowerCase().includes(text.toLowerCase()));
     setUsersFiltered(filtered)
   }
   
@@ -37,6 +38,11 @@ const Candidates = () => {
                 <h5 className='b-offer-title'>Candidatos</h5>
               </div>
               <Search filter={filter} setSearch={searchUsers}></Search>
+              <div className='b-candidates-filters'>
+                <h5 className= {`b-offers-links ${showName === "name" ? "dark" : ""}`} onClick={() => setShowName("name")}>Nombre</h5>
+                <h5 className={`b-offers-links ${showName === "location" ? "dark" : ""}`} onClick={() => setShowName("location")}>Localización</h5>
+                <h5 className={`b-offers-links ${showName === "job" ? "dark" : ""}`} onClick={() => setShowName("job")}>Trabajo</h5>
+              </div>
               <div className='b-candidates-container--list'>
                 {usersFiltered.map((user, index) => <Candidate key={index} user={user}></Candidate>)}
               </div>

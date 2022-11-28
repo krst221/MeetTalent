@@ -34,6 +34,7 @@ import CandidateProfile from './pages/User/Candidates/Profile/CandidateProfile';
 import Denied from './pages/User/Profile/Denied/Denied';
 import UserOffers from './pages/User/Profile/Offers/Offers';
 import Messages from './pages/User/Profile/Messages/Messages';
+import Conversation from './pages/User/Profile/Messages/Conversation/Conversation';
 
 
 function App() {
@@ -61,10 +62,11 @@ function App() {
             <Route path="/user/profile/" element={user ? <Detail></Detail> : <Login></Login>}></Route>
             <Route path="/user/profile/offers" element={user ? <UserOffers></UserOffers> : <Login></Login>}></Route>
             <Route path="/user/profile/messages" element={user ? <Messages></Messages> : <Login></Login>}></Route>
+            <Route path="/user/profile/messages/:idr/:ids" element={user ? <Conversation></Conversation> : <Login></Login>}></Route>
             <Route path="/user/profile/map" element={user ? <Map></Map> : <Login></Login>}></Route>
             <Route path="/user/candidates" element={user ? <Candidates></Candidates> : <Login></Login>}></Route>
             <Route path="/user/candidates/:id" element={user ? <CandidateProfile></CandidateProfile> : <Login></Login>}></Route>
-            <Route path="/user/create" element={isCompany === 'true' ? <Create></Create> : <Denied></Denied>}></Route>
+            <Route path="/user/create" element={user ? isCompany === 'true' ? <Create></Create> : <Denied></Denied> : <Login></Login>}></Route>
             <Route path="/user/create/offer" element={user ? <Offer></Offer> : <Login></Login>}></Route>
             <Route path="/user/create/offer/form" element={user ? <Form></Form> : <Login></Login>}></Route>
             <Route path="/user/create/offer/form/multiposting" element={user ? <Multiposting></Multiposting> : <Login></Login>}></Route>

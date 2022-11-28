@@ -1,9 +1,12 @@
 import React from 'react'
+import Maps from '../../../../../components/Maps/Maps'
 import './Map.scss'
 
 const Map = () => {
   return (
-    <div>Map</div>
+    <div>
+      <Maps></Maps>
+    </div>
   )
 }
 

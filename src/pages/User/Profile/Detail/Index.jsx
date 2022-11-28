@@ -73,7 +73,7 @@ const Index = () => {
             <div className='white'>
               <BackButton src="../../../assets/back.svg"></BackButton>
             </div>
-            <h3 className='b-profile-title'>Candidatos</h3>
+            <h3 className='b-profile-title'>Mi perfil</h3>
             <div className='white'>
               <Heart src="../../../assets/heart.svg"></Heart>
             </div>

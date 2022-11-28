@@ -7,7 +7,6 @@ import RecoverPassword from './pages/Login/Recover/RecoverPassword';
 import Chat from './pages/User/Chat/Chat';
 import Profile from './pages/User/Profile/Index';
 import Index from './pages/User/Index';
-import Admin from './pages/User/Profile/Admin/Admin';
 import Config from './pages/User/Profile/Config/Config';
 import Detail from './pages/User/Profile/Detail/Index';
 import Map from './pages/User/Profile/Detail/Map/Map';
@@ -32,16 +31,24 @@ import store from './redux/store';
 import User from './pages/Register/User/User';
 import Company from './pages/Register/Company/Company';
 import { UserContext } from './shared/contexts/UserContext';
+import { isCompanyContext } from './shared/contexts/isCompanyContext';
 import { useState } from 'react';
 import CandidateProfile from './pages/User/Candidates/Profile/CandidateProfile';
+import Denied from './pages/User/Profile/Denied/Denied';
+import UserOffers from './pages/User/Profile/Offers/Offers';
 
 
 function App() {
   const verify = localStorage.getItem('verify') || null;
+  const [isCompany, setCompany] = useState(localStorage.getItem('isCompany') || null);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
+  console.log(isCompany);
+
   return (
     <Provider store={store}>
       <UserContext.Provider value={{user, setUser}}>
+      <isCompanyContext.Provider value={{isCompany, setCompany}}>
         <Router> 
           <Routes>
             <Route path="/" element={<Login></Login>}></Route>  
@@ -54,14 +61,14 @@ function App() {
             <Route path="/user" element={user ? <Index></Index> : <Login></Login>}></Route>
             <Route path="/user/chat" element={user ? <Chat></Chat> : <Login></Login>}></Route>
             <Route path="/user/profile" element={user ? <Profile></Profile> : <Login></Login>}></Route>  
-            <Route path="/user/profile/admin" element={user ? <Admin></Admin> : <Login></Login>}></Route>
+            <Route path="/user/profile/offers" element={user ? <UserOffers></UserOffers> : <Login></Login>}></Route>
             <Route path="/user/profile/config" element={user ? <Config></Config> : <Login></Login>}></Route>
             <Route path="/user/profile/detail" element={user ? <Detail></Detail> : <Login></Login>}></Route>
             <Route path="/user/profile/detail/map" element={user ? <Map></Map> : <Login></Login>}></Route>
             <Route path="/user/profile/help" element={user ? <Help></Help> : <Login></Login>}></Route>
             <Route path="/user/candidates" element={user ? <Candidates></Candidates> : <Login></Login>}></Route>
             <Route path="/user/candidates/:id" element={user ? <CandidateProfile></CandidateProfile> : <Login></Login>}></Route>
-            <Route path="/user/create" element={user ? <Create></Create> : <Login></Login>}></Route>
+            <Route path="/user/create" element={isCompany === 'true' ? <Create></Create> : <Denied></Denied>}></Route>
             <Route path="/user/create/offer" element={user ? <Offer></Offer> : <Login></Login>}></Route>
             <Route path="/user/create/offer/form" element={user ? <Form></Form> : <Login></Login>}></Route>
             <Route path="/user/create/offer/form/multiposting" element={user ? <Multiposting></Multiposting> : <Login></Login>}></Route>
@@ -76,6 +83,7 @@ function App() {
             <Route path="/user/offers/:id/meeting" element={user ? <Meeting></Meeting> : <Login></Login>}></Route>       
           </Routes>
         </Router>
+        </isCompanyContext.Provider>
       </UserContext.Provider>
     </Provider>
   );

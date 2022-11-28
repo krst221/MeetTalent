@@ -1,5 +1,4 @@
 import { API } from "../../shared/services/services";
-
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGIN_USER_OK = "LOGIN_USER_OK";
 export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
@@ -15,6 +14,9 @@ export const GET_USER_ID_ERROR = "GET_USER_ID_ERROR";
 export const REGISTER_COMPANY = "REGISTER_COMPANY";
 export const REGISTER_COMPANY_OK = "REGISTER_COMPANY_OK";
 export const REGISTER_COMPANY_ERROR = "REGISTER_COMPANY_ERROR";
+export const CHECK_COMPANY = "CHECK_COMPANY";
+export const CHECK_COMPANY_OK = "CHECK_COMPANY_OK";
+export const CHECK_COMPANY_ERROR = "CHECK_COMPANY_ERROR";
 export const REGISTER_OFFER = "REGISTER_OFFER";
 export const REGISTER_OFFER_OK = "REGISTER_OFFER_OK";
 export const REGISTER_OFFER_ERROR = "REGISTER_OFFER_ERROR";
@@ -36,6 +38,9 @@ export const GET_OFFERS_ERROR = "GET_OFFERS_ERROR";
 export const GET_COMPANY = "GET_COMPANY";
 export const GET_COMPANY_OK = "GET_COMPANY_OK";
 export const GET_COMPANY_ERROR = "GET_COMPANY_ERROR";
+export const CLOSE_OFFER = "CLOSE_OFFER";
+export const CLOSE_OFFER_OK = "CLOSE_OFFER_OK";
+export const CLOSE_OFFER_ERROR = "CLOSE_OFFER_ERROR";
 
 export const loginUser = (formdata, navigate) => async(dispatch) => {
     dispatch({type: "LOGIN_USER"})
@@ -44,7 +49,6 @@ export const loginUser = (formdata, navigate) => async(dispatch) => {
         localStorage.setItem('token', result.data.token)
         localStorage.setItem('user', JSON.stringify(result.data.user))
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
-        console.log('logeao');
         if(localStorage.getItem('user')) {
             navigate('/user/profile/');
             navigate(0);
@@ -73,6 +77,17 @@ export const getAllUsers = () => async(dispatch) => {
         localStorage.setItem('users', JSON.stringify(res.data));
     } catch (error) {  
         dispatch({type: "GET_USERS_ERROR"})
+    }
+}
+
+export const getLocalUser = (id) => async(dispatch) => {
+    dispatch({type: "GET_USER"})
+    try {    
+        const res = await API.post("user/getUser", {'id': id})
+        dispatch({type: "GET_USER_OK"})
+        localStorage.setItem('user', JSON.stringify(res.data));
+    } catch (error) {  
+        dispatch({type: "GET_USER_ERROR"})
     }
 }
 
@@ -170,6 +185,31 @@ export const registerOffer = (formdata, navigate) => async(dispatch) => {
     }
 }
 
+export const joinOffer = (data, navigate) => async(dispatch) => {
+    dispatch({type: "REGISTER_OFFER"})
+    try {    
+        await API.post("user/join", data)
+        dispatch({type: "REGISTER_OFFER_OK"})
+        navigate('/user/profile');
+        navigate(0);
+    } catch (error) {  
+        dispatch({type: "REGISTER_OFFER_ERROR"})
+    }
+}
+
+export const closeOffer = (id, navigate) => async(dispatch) => {
+    dispatch({type: "CLOSE_OFFER"})
+    try {    
+        await API.put("offer/close", id)
+        dispatch({type: "CLOSE_OFFER_OK"})
+        await dispatch(getOffers());
+        navigate('/user/offers');
+        navigate(0);
+    } catch (error) {  
+        dispatch({type: "CLOSE_OFFER_ERROR"})
+    }
+}
+
 export const getOffers = () => async(dispatch) => {
     dispatch({type: "GET_OFFERS"})
     try {  
@@ -178,6 +218,17 @@ export const getOffers = () => async(dispatch) => {
         dispatch({type: "GET_OFFERS_OK"})
     } catch (error) {  
         dispatch({type: "GET_OFFERS_ERROR"})
+    }
+}
+
+export const checkCompany = (user, navigate) => async(dispatch) => {
+    dispatch({type: "CHECK_COMPANY"})
+    try {  
+        const res = await API.post("company/get/id", user)
+        localStorage.setItem('isCompany', res.data);
+        dispatch({type: "CHECK_COMPANY_OK"})
+    } catch (error) {  
+        dispatch({type: "CHECK_COMPANY_ERROR"})
     }
 }
 

@@ -1,4 +1,5 @@
 .b-component-offer {
+
     &-container{
         height: 270px;
         width: 290px;
@@ -7,18 +8,50 @@
         margin: 20px;
         color: rgb(13, 32, 42);
     }
+
+    &-bar {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin: 15px 0;
+    }
+
     &-title {
         padding-left: 20px;
+        height: 35px;
+        cursor: pointer;
+
+        h3 {
+            margin: 0px;
+        }
+        
     }
+
+    &-proc {
+        display: flex;
+        height: 30px;
+        align-items: center;
+        justify-content: space-between;
+        width: 85%;
+        margin: 0 auto;
+
+        span {
+            font-weight: 600;
+        }
+    }
+
     &-info {
         display: flex;
         justify-content: space-around;
+        margin-top: 5px;
+        height: 25px;
     }
+
     &-numbers {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 }
 
@@ -31,6 +64,7 @@
 .b-locker {
     width: 20px;
     height: 20px;
+    margin-top: 3px;
     cursor: pointer;
 }
 
@@ -38,7 +72,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 10px;
+    height: 37px;
+    width: 89%;
+
+    p {
+        font-size: 12px;
+        margin-left: 10px;
+    }
 }
 
 .b-icon-2 {

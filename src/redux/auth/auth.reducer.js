@@ -7,6 +7,7 @@ const INITAL_STATE = {
     token : null, 
     error : false,
     isLoading : false,
+    isCompany: false,
     verify: false,
     email: null,
     offers: null,
@@ -40,11 +41,17 @@ const authReducer = (state = INITAL_STATE, action) => {
             return {...state, isLoading : false, error : false, userid : action.payload};
         case actions.GET_USER_ID_ERROR :
             return {...state, isLoading : false, error : action.payload};
-    case actions.REGISTER_COMPANY :
+        case actions.REGISTER_COMPANY :
             return {...state, isLoading : true};
         case actions.REGISTER_COMPANY_OK :
             return {...state, isLoading : false, error : false};
         case actions.REGISTER_COMPANY_ERROR :
+            return {...state, isLoading : false, error : action.payload};
+        case actions.CHECK_COMPANY :
+            return {...state, isLoading : true};
+        case actions.CHECK_COMPANY_OK :
+            return {...state, isLoading : false, error : false};
+        case actions.CHECK_COMPANY_ERROR :
             return {...state, isLoading : false, error : action.payload};
         case actions.REGISTER_OFFER :
             return {...state, isLoading : true};
@@ -87,6 +94,12 @@ const authReducer = (state = INITAL_STATE, action) => {
         case actions.GET_COMPANY_OK :
             return {...state, isLoading : false, error : false, company : action.payload};
         case actions.GET_COMPANY_ERROR :
+            return {...state, isLoading : false, error : action.payload};
+        case actions.CLOSE_OFFER :
+            return {...state, isLoading : true};
+        case actions.CLOSE_OFFER_OK :
+            return {...state, isLoading : false, error : false};
+        case actions.CLOSE_OFFER_ERROR :
             return {...state, isLoading : false, error : action.payload};
         default :
             return state;

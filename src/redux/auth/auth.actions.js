@@ -50,7 +50,7 @@ export const loginUser = (formdata, navigate, setCompany) => async(dispatch) => 
         setCompany(result.data.user.isCompany);
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
         if(localStorage.getItem('user')) {
-            navigate('/user/profile/');
+            navigate('/user');
             navigate(0);
         }
     } catch (error) {
@@ -190,7 +190,7 @@ export const joinOffer = (data, navigate) => async(dispatch) => {
     try {    
         await API.post("user/join", data)
         dispatch({type: "REGISTER_OFFER_OK"})
-        navigate('/user/profile');
+        navigate('/user');
         navigate(0);
     } catch (error) {  
         dispatch({type: "REGISTER_OFFER_ERROR"})

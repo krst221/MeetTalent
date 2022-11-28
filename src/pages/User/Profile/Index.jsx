@@ -33,7 +33,7 @@ const Index = () => {
           <h5 className='b-user-info-name--sec'>Tu cuenta</h5>
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
         </div></NavLink>
-      {isCompany === 'false' && JSON.parse(localStorage.getItem('user')).offers > 0  ? <NavLink to={"/user/profile/offers"}><div className='b-user-info-links--box'>
+      {isCompany === 'false' && JSON.parse(localStorage.getItem('user')).offers.length > 0  ? <NavLink to={"/user/profile/offers"}><div className='b-user-info-links--box'>
           <h5 className='b-user-info-name--sec'>Mis ofertas</h5>
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
         </div></NavLink> : ''}

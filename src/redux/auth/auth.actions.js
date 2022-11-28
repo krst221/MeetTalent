@@ -188,8 +188,10 @@ export const registerOffer = (formdata, navigate) => async(dispatch) => {
 export const joinOffer = (data, navigate) => async(dispatch) => {
     dispatch({type: "REGISTER_OFFER"})
     try {    
-        await API.post("user/join", data)
+        const res = await API.post("user/join", data)
         dispatch({type: "REGISTER_OFFER_OK"})
+        console.log(res.data);
+        localStorage.setItem('user', JSON.stringify(res.data.user))
         navigate('/user');
         navigate(0);
     } catch (error) {  

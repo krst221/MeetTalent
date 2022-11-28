@@ -17,12 +17,15 @@
     }
 
     &-title {
-        padding-left: 20px;
         height: 35px;
-        cursor: pointer;
 
         h3 {
+            padding-left: 20px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
             margin: 0px;
+            width: 250px;
         }
         
     }

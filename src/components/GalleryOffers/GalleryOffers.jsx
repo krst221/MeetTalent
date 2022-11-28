@@ -16,6 +16,8 @@ const GalleryOffers = ({offers, own}) => {
         setOpenOffers([...offers].filter(offer => offer.processnum < 100))
         setCloseOffers([...offers].filter(offer => offer.processnum === 100))
     },[])
+    
+    console.log(JSON.parse(localStorage.getItem('user')).offers)
   
 
     const searchOffers = (title) => {

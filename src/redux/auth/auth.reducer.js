@@ -6,6 +6,7 @@ const INITAL_STATE = {
     users: null,
     token : null, 
     error : false,
+    sender: null,
     isLoading : false,
     verify: false,
     email: null,
@@ -33,6 +34,18 @@ const authReducer = (state = INITAL_STATE, action) => {
         case actions.GET_USERS_OK :
             return {...state, isLoading : false, error : false, users : action.payload};
         case actions.GET_USERS_ERROR :
+            return {...state, isLoading : false, error : action.payload};
+        case actions.GET_USER :
+            return {...state, isLoading : true};
+        case actions.GET_USER_OK :
+            return {...state, isLoading : false, error : false, useR : action.payload};
+        case actions.GET_USER_ERROR :
+            return {...state, isLoading : false, error : action.payload};
+        case actions.GET_SENDER :
+            return {...state, isLoading : true};
+        case actions.GET_SENDER_OK :
+            return {...state, isLoading : false, error : false, sender : action.payload};
+        case actions.GET_SENDER_ERROR :
             return {...state, isLoading : false, error : action.payload};
         case actions.GET_USER_ID :
             return {...state, isLoading : true};

@@ -8,7 +8,7 @@ const NavBar = () => {
 
   return (
     <div className='b-navbar'>
-      <div className='b-complete-icon' onClick={() => navigate("/user/profile")}>
+      <div className='b-complete-icon' onClick={() => navigate("/user")}>
         <img  className='b-icon' src='/assets/house.svg' alt="Casa"></img>
         <small className='b-span-icon'>Home</small>
       </div>

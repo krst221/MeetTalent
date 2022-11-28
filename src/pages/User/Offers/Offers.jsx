@@ -14,18 +14,18 @@ const Offers = () => {
 
   return (
     <>
-      {offers.length < 1 ? <Loading /> :
       <>
         <div className='b-offers-container'>
           <div className='b-offers-header'>
             <h5 className='b-offer-title'>Ofertas</h5>
           </div>
-          <GalleryOffers offers={offers} />
+          {offers.length < 1 ? <Loading /> :
+          <GalleryOffers offers={offers} />}
           <div className='b-position-nav'>
             <NavBar></NavBar>
           </div>
         </div>
-      </>}
+      </>
     </>
   ) 
 }

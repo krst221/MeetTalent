@@ -7,7 +7,6 @@ const INITAL_STATE = {
     token : null, 
     error : false,
     isLoading : false,
-    isCompany: false,
     verify: false,
     email: null,
     offers: null,
@@ -46,12 +45,6 @@ const authReducer = (state = INITAL_STATE, action) => {
         case actions.REGISTER_COMPANY_OK :
             return {...state, isLoading : false, error : false};
         case actions.REGISTER_COMPANY_ERROR :
-            return {...state, isLoading : false, error : action.payload};
-        case actions.CHECK_COMPANY :
-            return {...state, isLoading : true};
-        case actions.CHECK_COMPANY_OK :
-            return {...state, isLoading : false, error : false};
-        case actions.CHECK_COMPANY_ERROR :
             return {...state, isLoading : false, error : action.payload};
         case actions.REGISTER_OFFER :
             return {...state, isLoading : true};

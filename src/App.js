@@ -6,7 +6,6 @@ import VerifyMail from './pages/Login/Recover/VerifyMail';
 import RecoverPassword from './pages/Login/Recover/RecoverPassword';
 import Chat from './pages/User/Chat/Chat';
 import Profile from './pages/User/Profile/Index';
-import Index from './pages/User/Index';
 import Config from './pages/User/Profile/Config/Config';
 import Detail from './pages/User/Profile/Detail/Index';
 import Map from './pages/User/Profile/Detail/Map/Map';
@@ -58,13 +57,12 @@ function App() {
             <Route path="/login" element={<Login></Login>}></Route> 
             <Route path="/login/verify" element={<VerifyMail></VerifyMail>}></Route>
             <Route path="/login/recover" element={verify==='true' ? <RecoverPassword></RecoverPassword> : <VerifyMail/>}></Route>
-            <Route path="/user" element={user ? <Index></Index> : <Login></Login>}></Route>
+            <Route path="/user" element={user ? <Profile></Profile> : <Login></Login>}></Route>
             <Route path="/user/chat" element={user ? <Chat></Chat> : <Login></Login>}></Route>
-            <Route path="/user/profile" element={user ? <Profile></Profile> : <Login></Login>}></Route>  
             <Route path="/user/profile/offers" element={user ? <UserOffers></UserOffers> : <Login></Login>}></Route>
             <Route path="/user/profile/config" element={user ? <Config></Config> : <Login></Login>}></Route>
-            <Route path="/user/profile/detail" element={user ? <Detail></Detail> : <Login></Login>}></Route>
-            <Route path="/user/profile/detail/map" element={user ? <Map></Map> : <Login></Login>}></Route>
+            <Route path="/user/profile/" element={user ? <Detail></Detail> : <Login></Login>}></Route>
+            <Route path="/user/profile/map" element={user ? <Map></Map> : <Login></Login>}></Route>
             <Route path="/user/profile/help" element={user ? <Help></Help> : <Login></Login>}></Route>
             <Route path="/user/candidates" element={user ? <Candidates></Candidates> : <Login></Login>}></Route>
             <Route path="/user/candidates/:id" element={user ? <CandidateProfile></CandidateProfile> : <Login></Login>}></Route>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -6,11 +6,13 @@ import Button from '../../components/Button/Button'
 import Loading from '../../components/Loading/Loading'
 import Logo from '../../components/Logo/Logo'
 import { loginUser } from '../../redux/auth/auth.actions'
+import { isCompanyContext } from '../../shared/contexts/isCompanyContext'
 import './Login.scss'
 
 const Login = () => {
   
   const {register, handleSubmit, formState : {errors}} = useForm()
+  const {setCompany} = useContext(isCompanyContext);
   const {isLoading} = useSelector((state) => state.auth)
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,16 +22,16 @@ const Login = () => {
     localStorage.setItem('token', null);
     localStorage.setItem('verify', null);
     localStorage.setItem('email', null);
-    localStorage.setItem('isCompany', null);
     localStorage.setItem('company', null);
-    localStorage.setItem('offers', null);
+    localStorage.setItem('offers', []);
     localStorage.setItem('users', null);
   }, [])
   
 
   const enviar = (formdata) => {
     console.log(formdata);
-    dispatch(loginUser(formdata, navigate))
+    dispatch(loginUser(formdata, navigate, setCompany))
+
   }
   return (
     <>

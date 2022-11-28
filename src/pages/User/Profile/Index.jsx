@@ -5,7 +5,7 @@ import ImageUser from '../../../components/ImageUser/ImageUser';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../../../components/NavBar/NavBar';
 import { useDispatch } from 'react-redux';
-import { getOffers, getAllUsers, checkCompany, getLocalUser } from '../../../redux/auth/auth.actions';
+import { getOffers, getAllUsers, getLocalUser } from '../../../redux/auth/auth.actions';
 import { isCompanyContext } from '../../../shared/contexts/isCompanyContext';
 
 const Index = () => {
@@ -14,7 +14,6 @@ const Index = () => {
   const {isCompany} = useContext(isCompanyContext);
 
   useEffect(() => {
-    dispatch(checkCompany(JSON.parse(localStorage.getItem('user'))));
     dispatch(getOffers());
     dispatch(getAllUsers());
     if(isCompany === 'false') dispatch(getLocalUser(JSON.parse(localStorage.getItem('user'))._id));
@@ -30,11 +29,11 @@ const Index = () => {
         <h4 className='b-user-info-name'>{JSON.parse(localStorage.getItem("user")).name}</h4>
       </div>
       <div className='b-user-info-links'>
-      <NavLink to={"/user/profile/detail"}><div className='b-user-info-links--box'>
+      <NavLink to={"/user/profile"}><div className='b-user-info-links--box'>
           <h5 className='b-user-info-name--sec'>Tu cuenta</h5>
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
         </div></NavLink>
-      {isCompany === 'false' ? <NavLink to={"/user/profile/offers"}><div className='b-user-info-links--box'>
+      {isCompany === 'false' && JSON.parse(localStorage.getItem('user')).offers > 0  ? <NavLink to={"/user/profile/offers"}><div className='b-user-info-links--box'>
           <h5 className='b-user-info-name--sec'>Mis ofertas</h5>
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
         </div></NavLink> : ''}

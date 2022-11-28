@@ -14,9 +14,6 @@ export const GET_USER_ID_ERROR = "GET_USER_ID_ERROR";
 export const REGISTER_COMPANY = "REGISTER_COMPANY";
 export const REGISTER_COMPANY_OK = "REGISTER_COMPANY_OK";
 export const REGISTER_COMPANY_ERROR = "REGISTER_COMPANY_ERROR";
-export const CHECK_COMPANY = "CHECK_COMPANY";
-export const CHECK_COMPANY_OK = "CHECK_COMPANY_OK";
-export const CHECK_COMPANY_ERROR = "CHECK_COMPANY_ERROR";
 export const REGISTER_OFFER = "REGISTER_OFFER";
 export const REGISTER_OFFER_OK = "REGISTER_OFFER_OK";
 export const REGISTER_OFFER_ERROR = "REGISTER_OFFER_ERROR";
@@ -42,12 +39,15 @@ export const CLOSE_OFFER = "CLOSE_OFFER";
 export const CLOSE_OFFER_OK = "CLOSE_OFFER_OK";
 export const CLOSE_OFFER_ERROR = "CLOSE_OFFER_ERROR";
 
-export const loginUser = (formdata, navigate) => async(dispatch) => {
+export const loginUser = (formdata, navigate, setCompany) => async(dispatch) => {
     dispatch({type: "LOGIN_USER"})
+
     try {
         const result = await API.post("user/login", formdata)
         localStorage.setItem('token', result.data.token)
         localStorage.setItem('user', JSON.stringify(result.data.user))
+        localStorage.setItem('isCompany', JSON.stringify(result.data.user.isCompany))
+        setCompany(result.data.user.isCompany);
         dispatch({type: "LOGIN_USER_OK", payload: result.data})
         if(localStorage.getItem('user')) {
             navigate('/user/profile/');
@@ -221,21 +221,10 @@ export const getOffers = () => async(dispatch) => {
     }
 }
 
-export const checkCompany = (user, navigate) => async(dispatch) => {
-    dispatch({type: "CHECK_COMPANY"})
-    try {  
-        const res = await API.post("company/get/id", user)
-        localStorage.setItem('isCompany', res.data);
-        dispatch({type: "CHECK_COMPANY_OK"})
-    } catch (error) {  
-        dispatch({type: "CHECK_COMPANY_ERROR"})
-    }
-}
-
-export const getCompany = (offer) => async(dispatch) => {
+export const getCompany = () => async(dispatch) => {
     dispatch({type: "GET_COMPANY"})
     try {  
-        const res = await API.post("company/get", offer)
+        const res = await API.post("company/get", {id: JSON.parse(localStorage.getItem('user'))._id})
         localStorage.setItem('company', res.data);
         dispatch({type: "GET_COMPANY_OK"})
     } catch (error) {  

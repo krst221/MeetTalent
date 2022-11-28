@@ -190,7 +190,7 @@ export const joinOffer = (data, navigate) => async(dispatch) => {
     try {    
         await API.post("user/join", data)
         dispatch({type: "REGISTER_OFFER_OK"})
-        navigate('/user/profile');
+        navigate('/user');
         navigate(0);
     } catch (error) {  
         dispatch({type: "REGISTER_OFFER_ERROR"})

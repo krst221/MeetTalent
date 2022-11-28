@@ -33,7 +33,7 @@ const CandidateProfile = () => {
             <div className='white'>
             </div>
           </div> 
-          <div className='b-profile--detail'>
+          <div className='b-profile--detail border-top'>
             <div className='b-profile--detail--container'>    
               <div className='b-profile--image'><ImageUser src={JSON.parse(localStorage.getItem('userid')) ? JSON.parse(localStorage.getItem('userid')).picture : ''} /></div>
             </div>

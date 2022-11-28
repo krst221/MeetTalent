@@ -22,7 +22,7 @@ const User = () => {
 
   return (
     <>
-      {isLoading === true ? <Loading></Loading> :
+      {isLoading ? <Loading></Loading> :
       <>
         <div className='b-reguser-container'>
           <div className='b-user-header'>

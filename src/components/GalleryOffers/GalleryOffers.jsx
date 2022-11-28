@@ -16,10 +16,7 @@ const GalleryOffers = ({offers, own}) => {
         setOpenOffers([...offers].filter(offer => offer.processnum < 100))
         setCloseOffers([...offers].filter(offer => offer.processnum === 100))
     },[])
-    
-    console.log(JSON.parse(localStorage.getItem('user')).offers)
   
-
     const searchOffers = (title) => {
       if(title.length < 1 && showOpenOffers) {
         
@@ -35,7 +32,6 @@ const GalleryOffers = ({offers, own}) => {
         if (showOpenOffers) setOpenOffers([...offersFiltered].filter(offer => offer.processnum < 100))
         else setCloseOffers([...offersFiltered].filter(offer => offer.processnum === 100))
       }
-      
     } 
   
     return (
@@ -45,13 +41,13 @@ const GalleryOffers = ({offers, own}) => {
       </div>
     
     <div className='b-component-galleryoffers'>
-       <div className='b-offers-showbuttons'>
+       {!own ? <div className='b-offers-showbuttons'>
           <h5 className= {`b-offers-links ${showOpenOffers ? "dark" : ""}`} onClick={() => setShowOpenOffers(true)}>Abiertas</h5>
           <h5 className={`b-offers-links ${showOpenOffers ? "" : "dark"}`} onClick={() => setShowOpenOffers(false)}>Cerradas</h5>
-        </div>
-        <div className='b-offers-boxes-container'>
+        </div>: ''}
+        <div className={`b-offers-boxes-container ${own ? 'margin-top' : ''}`}>
          {showOpenOffers ? [...openOffers].reverse().map((offer) => <Offer offer={offer} open={true} own={own}></Offer>) :
-          [...closeOffers].reverse().map((offer) => <Offer offer={offer} open={false}  own={own}></Offer>)}
+          [...closeOffers].reverse().map((offer) => <Offer offer={offer} open={false} own={own}></Offer>)}
         </div>
     </div></>
   )

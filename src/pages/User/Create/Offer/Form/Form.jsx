@@ -79,14 +79,8 @@ const Form = () => {
             <h5>Descripción de la oferta</h5>
             <textarea className='b-create-offer-form-textarea' {...register("description")} defaultValue={JSON.parse(localStorage.getItem('copyoffer')).description}></textarea>
             <h5>Compañia</h5>
-            <select className='b-create-offer-form-select' {...register("company")}>
-              {localStorage.getItem('company') && localStorage.getItem('company') === 'Telefónica' ? <option value="Telefónica" selected>Telefónica</option> : <option value="Telefónica">Telefónica</option>}
-              {localStorage.getItem('company') && localStorage.getItem('company') === 'NASA' ? <option value="NASA" selected>NASA</option> : <option value="NASA">NASA</option>}
-              {localStorage.getItem('company') && localStorage.getItem('company') === 'Grupo Larrumba' ? <option value="Grupo Larrumba" selected>Grupo Larrumba</option> : <option value="Grupo Larrumba">Grupo Larrumba</option>}
-              {localStorage.getItem('company') && localStorage.getItem('company') === 'Grupo Paragüas' ? <option value="Grupo Paragüas" selected>Grupo Paragüas</option> : <option value="Grupo Paragüas">Grupo Paragüas</option>}
-              {localStorage.getItem('company') && localStorage.getItem('company') === 'Midas' ? <option value="Midas" selected>Midas</option> : <option value="Midas">Midas</option>}
-              {localStorage.getItem('company') && localStorage.getItem('company') !== 'Telefónica' && localStorage.getItem('company') !== 'NASA' && localStorage.getItem('company') !== 'Grupo Larrumba' && localStorage.getItem('company') !== 'Grupo Paragüas' && localStorage.getItem('company') !== 'Midas' ? <option value={localStorage.getItem('company')} selected>{localStorage.getItem('company')}</option> : ''}
-
+            <select className='b-create-offer-form-select'>
+              <option value={localStorage.getItem('company')} selected>{localStorage.getItem('company')}</option>
             </select>
             <h5>Localización</h5>
             <label>Ciudad</label>
@@ -96,7 +90,6 @@ const Form = () => {
               {JSON.parse(localStorage.getItem('copyoffer')).location && JSON.parse(localStorage.getItem('copyoffer')).location.city === 'New York' ? <option value="New York" select>New York</option> : <option value="New York">New York</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).location && JSON.parse(localStorage.getItem('copyoffer')).location.city === 'Sidney' ? <option value="Sidney" select>Sidney</option> : <option value="Sidney">Sidney</option>}
               {JSON.parse(localStorage.getItem('copyoffer')).location && JSON.parse(localStorage.getItem('copyoffer')).location.city !== 'Madrid' && JSON.parse(localStorage.getItem('copyoffer')).location.city !== 'Paris' && JSON.parse(localStorage.getItem('copyoffer')).location.city !== 'New York' && JSON.parse(localStorage.getItem('copyoffer')).location.city !== 'Sidney' ? <option value={JSON.parse(localStorage.getItem('copyoffer')).location.city} selected>{JSON.parse(localStorage.getItem('copyoffer')).location.city}</option> : ''}
-
             </select>
             <label>País</label>
             <select className='b-create-offer-form-select' {...register("location.country")}>

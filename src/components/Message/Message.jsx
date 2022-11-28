@@ -1,25 +1,37 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
+import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router';
 import { getSender } from '../../redux/auth/auth.actions';
 import './Message.scss'  //Container de las ofertas
 
 const Message = ({message}) => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [sender, setSender] = useState([]);
+  const [convo, setConvo] = useState(false);
+  const {register, handleSubmit, reset} = useForm()
 
   useEffect(() => {
-    dispatch(getSender(message.user_send));
+    dispatch(getSender(message.user_send)).then(value => {setSender(JSON.parse(value));})
   }, [dispatch, message])
 
-  console.log(JSON.parse(localStorage.getItem('sender')).picture);
-
+  const send = (formdata) => {
+    reset();
+  }
   
   return (
-    <div className='b-message' onClick={() => navigate(`/user/${JSON.parse(localStorage.getItem('user'))._id}/${JSON.parse(localStorage.getItem('sender'))._id}`)}>
-      <img src={localStorage.getItem('sender') && JSON.parse(localStorage.getItem('sender')).picture} alt='' /><h3>{message.text}</h3>
-    </div>
+    <>
+    <div className='b-message'>
+    <div className='b-message-inbox' onClick={() => setConvo(!convo)}>
+      <div className='b-message-inbox-user'><h3>{sender && sender.name}</h3><img src={sender && sender.picture} alt='' /></div><div className='b-message-inbox-text'><h3>{message.text}</h3></div>
+    </div>      
+    {convo ? 
+        <form className='b-message-form' onSubmit={(handleSubmit(send))}>
+          <textarea {...register("text", {required: true})}></textarea>
+          <button type='submit'>Enviar</button>
+        </form> : ''}
+      </div>
+    </>
   )
 }
 

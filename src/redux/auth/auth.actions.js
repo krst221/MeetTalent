@@ -102,7 +102,7 @@ export const getSender = (id) => async(dispatch) => {
     try {    
         const res = await API.post("user/getUser", {'id': id})
         dispatch({type: "GET_SENDER_OK"})
-        localStorage.setItem('sender', JSON.stringify(res.data));
+        return JSON.stringify(res.data);
     } catch (error) {  
         dispatch({type: "GET_SENDER_ERROR"})
     }

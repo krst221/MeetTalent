@@ -36,7 +36,7 @@ const GalleryOffers = ({offers, own}) => {
         else setCloseOffers([...offersFiltered].filter(offer => offer.processnum === 100))
       }
       
-    }
+    } 
   
     return (
     <>

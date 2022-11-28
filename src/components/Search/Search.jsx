@@ -1,11 +1,11 @@
 import React from 'react'
 import './Search.scss'
 
-const Search = ({setSearch}) => {
+const Search = ({setSearch, filter}) => {
   
   const handleChange = (event) => {
     const {value} = event.target;
-    setSearch(value)
+    setSearch(value, filter)
   } 
 
   return (

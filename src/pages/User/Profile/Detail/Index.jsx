@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState } from 'react'
+import React, {useContext, useState } from 'react'
 import tw from '../../../../img/twitter.svg'
 import fb from '../../../../img/facebook.svg'
 import ig from '../../../../img/instagram.svg'
@@ -13,7 +13,6 @@ import { modifyUserArray } from '../../../../redux/auth/auth.actions'
 import { deleteArrayElement } from '../../../../redux/auth/auth.actions'
 import { UserContext } from '../../../../shared/contexts/UserContext'
 import './Index.scss'
-import axios from 'axios';
 import BackButton from '../../../../components/BackButton/BackButton'
 
 const Index = () => {
@@ -23,15 +22,6 @@ const Index = () => {
   const [editMode, setEditMode] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
-
-  useEffect( () => { 
-    async function manolo() {
-      const result = await axios.post("http://api.openweathermap.org/geo/1.0/direct?q=Madrid&limit=4&appid=10be50e007815d012a0be63fec397b6a")
-      console.log(result);
-    }
-    manolo()
-  
-  }, [])
   
 
   const submit = (formData) => {

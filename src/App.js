@@ -7,7 +7,6 @@ import RecoverPassword from './pages/Login/Recover/RecoverPassword';
 import Chat from './pages/User/Chat/Chat';
 import Profile from './pages/User/Profile/Index';
 import Detail from './pages/User/Profile/Detail/Index';
-import Map from './pages/User/Profile/Detail/Map/Map';
 import Sync from './pages/Register/Sync/Sync';
 import Candidates from './pages/User/Candidates/Candidates';
 import Create from './pages/User/Create/Create';
@@ -58,7 +57,6 @@ function App() {
             <Route path="/user/profile/" element={user ? <Detail></Detail> : <Login></Login>}></Route>
             <Route path="/user/profile/offers" element={user ? <UserOffers></UserOffers> : <Login></Login>}></Route>
             {/* <Route path="/user/profile/messages" element={user ? <Messages></Messages> : <Login></Login>}></Route> */}
-            <Route path="/user/profile/map" element={user ? <Map></Map> : <Login></Login>}></Route>
             <Route path="/user/candidates" element={user ? <Candidates></Candidates> : <Login></Login>}></Route>
             <Route path="/user/candidates/:id" element={user ? <CandidateProfile></CandidateProfile> : <Login></Login>}></Route>
             <Route path="/user/create" element={user ? isCompany === 'true' ? <Create></Create> : <Denied></Denied> : <Login></Login>}></Route>

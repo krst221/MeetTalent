@@ -27,7 +27,7 @@ const Offer = ({offer, open, own}) => {
       <div className='b-component-offer-locker'>
         <p>{(new Date(offer.createdAt).getDay()+27).toLocaleString('es-ES', {minimumIntegerDigits: 2,useGrouping: false}) + '/' + (new Date(offer.createdAt).getMonth()+1).toLocaleString('es-ES', {minimumIntegerDigits: 2,useGrouping: false}) + '/' + new Date(offer.createdAt).getUTCFullYear()}</p>
         <p></p>
-        {JSON.parse(localStorage.getItem('user'))._id === offer.company ? <img className='b-locker' onClick={() => close()} src={open ? "/assets/open.svg" : '/assets/close.svg'} alt="Candado"></img> : JSON.parse(localStorage.getItem('user')).offers.find(off => off._id === offer._id ) === undefined && isCompany==='false' && !own ? <img className='b-locker' onClick={() => join()} src={"/assets/plus.png"} alt="Join" /> : ''}
+        {JSON.parse(localStorage.getItem('user'))._id === offer.company ? <img className='b-locker' onClick={() => close()} src={open ? "/assets/open.svg" : '/assets/close.svg'} alt="Candado"></img> : JSON.parse(localStorage.getItem('user')).offers.find(off => off._id === offer._id ) === undefined && isCompany==='false' && !own && open ? <img className='b-locker' onClick={() => join()} src={"/assets/plus.png"} alt="Join" /> : ''}
       </div>
       <div className='b-component-offer-title'>
         <h3 onClick={() => join()}>{offer.title}</h3>

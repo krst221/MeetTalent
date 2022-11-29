@@ -29,7 +29,6 @@ const Login = () => {
   
 
   const enviar = (formdata) => {
-    console.log(formdata);
     dispatch(loginUser(formdata, navigate, setCompany))
 
   }

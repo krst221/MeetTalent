@@ -15,8 +15,8 @@ const Messages = () => {
     <>
         <div className='b-offers-container'>
           <div className='b-offers-header'>
-          <div className='white'>
-              <BackButton src="/assets/back.svg"></BackButton>
+            <div className='white'>
+                <BackButton src="/assets/back.svg"></BackButton>
             </div>
             <h3 className='b-profile-title'>Mis mensajes</h3>
             <div className='white'>

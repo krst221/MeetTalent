@@ -21,7 +21,7 @@ const UserOffers = () => {
           <div className='white'>
               <BackButton src="/assets/back.svg"></BackButton>
             </div>
-            <h3 className='b-profile-title'>Mis ofertas</h3>
+            <h3 className='b-profile-title'>Mis candidaturas</h3>
             <div className='white'>
             </div>
           </div>

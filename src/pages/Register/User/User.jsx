@@ -105,9 +105,13 @@ const User = () => {
               {errors.password2.type === "validate" && <p className='b-login-error--sec'>{errors.password2.message}</p>}
               </>}
               </div>
+<<<<<<< HEAD
               <label className='b-checktext'><input type="checkbox"  {...register("check",{
                 required: true
               })}></input>Al crear una cuenta, acepta automáticamente todos los <span className='b-reguser-span'>términos y condiciones</span> relacionados con <span className='b-reguser-span'>MeetTalent</span></label>
+=======
+              <label className='b-checktext'><input type="checkbox" {...register("check", {required: true})}></input>Al crear una cuenta, acepta automáticamente todos los <span className='b-reguser-span'>términos y condiciones</span> relacionados con <span className='b-reguser-span'>MeetTalent</span></label>
+>>>>>>> 8c96720d4d58984073d5d57886d2593a4f022ee6
               <Button className="b-form-button b-form-button--sec" text="Continuar"></Button>
           </form>
         </div>

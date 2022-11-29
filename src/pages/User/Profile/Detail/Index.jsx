@@ -23,15 +23,6 @@ const Index = () => {
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
 
-  useEffect( () => { 
-    async function manolo() {
-      const result = await axios.post("http://api.openweathermap.org/geo/1.0/direct?q=Madrid&limit=4&appid=10be50e007815d012a0be63fec397b6a")
-      console.log(result);
-    }
-    manolo()
-  
-  }, [])
-  
 
   const submit = (formData) => {
     const key = Object.keys(formData)[0];

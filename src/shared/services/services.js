@@ -12,7 +12,7 @@ export const APIHeaders = {
 };
 
 export const API = axios.create({
-    baseURL : 'https://meettalent.herokuapp.com/',
+    baseURL : 'http://localhost:3030/',
     timeout: 6000,
     headers : APIHeaders
 });

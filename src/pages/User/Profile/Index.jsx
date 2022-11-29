@@ -38,10 +38,6 @@ const Index = () => {
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
         </div></NavLink> : ''}
         <div className='b-user-info-links--box'>
-          <h5 className='b-user-info-name--sec'>Configuración</h5>
-          <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
-        </div>
-        <div className='b-user-info-links--box'>
           <h5 className='b-user-info-name--sec'>Ayuda</h5>
           <img className='b-user-links-icon' src='../../../assets/next.svg' alt='next'></img>
         </div>

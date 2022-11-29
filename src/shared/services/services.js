@@ -12,7 +12,7 @@ export const APIHeaders = {
 };
 
 export const API = axios.create({
-    baseURL : https://meet-talent-backend.vercel.app/,
+    baseURL : 'https://meet-talent-backend.vercel.app/',
     timeout: 6000,
     headers : APIHeaders
 });

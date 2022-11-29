@@ -10,7 +10,7 @@ import './User.scss'
 const User = () => {
   
 
-  const {register, handleSubmit, formState : {errors}, getValues} = useForm()
+  const {register, handleSubmit, formState : {errors}, getValues } = useForm()
 
   const {isLoading} = useSelector((state) => state.auth)
   const navigate = useNavigate();

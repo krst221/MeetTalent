@@ -15,12 +15,10 @@ const Message = ({message}) => {
     dispatch(getSender(message.user_send)).then(value => {setSender(JSON.parse(value));})
   }, [dispatch, message])
 
-<<<<<<< HEAD
     return (
     <div className='b-message'>
       <img src={localStorage.getItem("sender") && JSON.parse(localStorage.getItem('sender')).picture} alt='' /><h3>{message.text}</h3>
     </div>
-=======
   const send = (formdata) => {
     reset();
   }
@@ -38,7 +36,6 @@ const Message = ({message}) => {
         </form> : ''}
       </div>
     </>
->>>>>>> 8c96720d4d58984073d5d57886d2593a4f022ee6
   )
 }
 

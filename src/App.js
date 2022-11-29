@@ -40,8 +40,6 @@ function App() {
   const [isCompany, setCompany] = useState(localStorage.getItem('isCompany') || null);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
-  console.log(isCompany);
-
   return (
     <Provider store={store}>
       <UserContext.Provider value={{user, setUser}}>

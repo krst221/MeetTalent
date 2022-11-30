@@ -17,7 +17,6 @@ export const RecoverPassword = () => {
 
   const cambiaPassword = (formdata) => {
     formdata.email = localStorage.getItem('email');
-    console.log(formdata);
     dispatch(changePassword(formdata, navigate))
   }
 

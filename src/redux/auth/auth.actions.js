@@ -207,7 +207,6 @@ export const joinOffer = (data, navigate) => async(dispatch) => {
     try {    
         const res = await API.post("user/join", data)
         dispatch({type: "REGISTER_OFFER_OK"})
-        console.log(res.data);
         localStorage.setItem('user', JSON.stringify(res.data.user))
         navigate('/user');
         navigate(0);

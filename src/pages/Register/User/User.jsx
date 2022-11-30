@@ -16,7 +16,6 @@ const User = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const enviar = (formdata) => {
-    console.log(formdata);
     dispatch(registerUser(formdata, navigate))
   }
 

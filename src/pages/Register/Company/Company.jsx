@@ -18,7 +18,6 @@ const Company = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const enviar = (formdata) => {
-    console.log(formdata);
     dispatch(registerCompany(formdata, navigate))
   }
 

@@ -27,7 +27,7 @@ const CandidateProfile = () => {
         <div className='b-profile'>
           <div className='b-profile-header'>
             <div className='white'>
-              <BackButton num={-1} src="../../../assets/back.svg"></BackButton>
+              <BackButton num={-2} src="../../../assets/back.svg"></BackButton>
             </div>
             <h3 className='b-profile-title'>Candidatos</h3>
             <div className='white'>

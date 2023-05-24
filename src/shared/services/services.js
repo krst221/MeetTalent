@@ -12,7 +12,7 @@ export const APIHeaders = {
 };
 
 export const API = axios.create({
-    baseURL : 'https://meettalent-backend-production.up.railway.app/',
+    baseURL : 'https://meettalent-backend.up.railway.app/',
     timeout: 6000,
     headers : APIHeaders
 });
